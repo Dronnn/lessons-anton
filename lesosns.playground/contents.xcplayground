@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='rendered' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='lesson1'/>
+        <page name='tasks1'/>
+        <page name='solution1'/>
+        <page name='lesson2'/>
+        <page name='tasks2'/>
+        <page name='solution2'/>
+        <page name='lesson3'/>
+        <page name='tasks3'/>
+        <page name='solution3'/>
+        <page name='lesson4'/>
+        <page name='tasks4'/>
+        <page name='lesson5'/>
+        <page name='tasks5'/>
+        <page name='solutions5'/>
+        <page name='lesson6'/>
+        <page name='tasks6'/>
+        <page name='solutions6'/>
+        <page name='tasks-additional-1'/>
+        <page name='lesson7'/>
+        <page name='tasks7'/>
+        <page name='solution7'/>
+        <page name='lesson8'/>
+        <page name='tasks8'/>
+        <page name='solutions8'/>
+        <page name='lesson9'/>
+        <page name='tasks9'/>
+        <page name='solutions9'/>
+        <page name='lesson10'/>
+        <page name='tasks10'/>
+        <page name='solutions10'/>
+        <page name='lesson11 optional'/>
+    </pages>
+</playground>
