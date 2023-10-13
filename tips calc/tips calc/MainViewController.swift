@@ -9,11 +9,22 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var actionButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+                
+        titleLabel.text = "hello!"
+        
+        actionButton.setTitle("action", for: .normal)
     }
 
-
+    @IBAction 
+    func doAction(_ sender: Any) {
+        titleLabel.text = "button was pressed"
+    }
+    
 }
 
