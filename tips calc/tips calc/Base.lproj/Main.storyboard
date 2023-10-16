@@ -60,23 +60,30 @@
                                         </constraints>
                                         <color key="textColor" name="AccentColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="t0r-zG-cGW"/>
+                                        </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXN-BA-tiG">
-                                        <rect key="frame" x="320" y="79.666666666666686" width="36" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXN-BA-tiG">
+                                        <rect key="frame" x="335" y="79.666666666666686" width="21" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="AccentColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dpO-wG-LgZ">
-                                        <rect key="frame" x="372" y="82.666666666666686" width="10" height="15"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.forward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dpO-wG-LgZ">
+                                        <rect key="frame" x="372" y="82" width="10" height="16.333333333333329"/>
+                                        <color key="tintColor" systemColor="placeholderTextColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="Niy-YC-oeU"/>
+                                            <constraint firstAttribute="height" constant="20" id="Niy-YC-oeU"/>
                                             <constraint firstAttribute="width" constant="10" id="hqG-U7-j3w"/>
                                         </constraints>
                                     </imageView>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="LEm-wL-RWq">
                                         <rect key="frame" x="288" y="132" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="peopeNumberChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="rjT-4V-tcX"/>
+                                        </connections>
                                     </stepper>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C02-az-lhQ">
                                         <rect key="frame" x="262" y="137.66666666666669" width="10" height="21"/>
@@ -189,13 +196,13 @@
                                 <rect key="frame" x="16" y="523" width="398" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkx-Tu-44O">
-                                        <rect key="frame" x="16" y="16" width="29.666666666666671" height="24"/>
+                                        <rect key="frame" x="16" y="16" width="30" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5F-NJ-LIW">
-                                        <rect key="frame" x="16.000000000000004" y="80" width="46.333333333333343" height="24"/>
+                                        <rect key="frame" x="15.999999999999996" y="80" width="46.666666666666657" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -255,6 +262,15 @@
                             <constraint firstItem="wKQ-hx-s1I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="xqj-zV-4EX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="amountTextField" destination="9Vg-jF-V6z" id="JNP-NU-cS1"/>
+                        <outlet property="peopleNumberLabel" destination="C02-az-lhQ" id="ddz-vY-n9A"/>
+                        <outlet property="percentLabel" destination="uXN-BA-tiG" id="Zyr-F9-nxS"/>
+                        <outlet property="tipPerPersonLabel" destination="1KZ-wF-rOx" id="vwj-20-1g2"/>
+                        <outlet property="totalMoneyLabel" destination="19M-rq-NwG" id="Mz1-VT-fF1"/>
+                        <outlet property="totalTipsLabel" destination="coR-0Q-FTh" id="uFp-V6-ksq"/>
+                        <outlet property="totoalPerPersonLabel" destination="hcT-A6-2se" id="8md-6p-ghp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -262,9 +278,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.forward" catalog="system" width="97" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
