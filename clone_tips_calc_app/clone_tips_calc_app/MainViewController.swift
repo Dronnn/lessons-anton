@@ -29,13 +29,19 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        calculate()
     }
 // MARK: - ACTIONS
     
     @IBAction func stepperAction(_ sender: Any) {
     }
     
-
+    
+    
+    
+    func calculate() {
+        
+    }
 
 // MARK: - EXTENSIONS
     
