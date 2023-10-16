@@ -43,11 +43,25 @@ class MainViewController: UIViewController {
         guard let text = amountTextField.text else {
             return
         }
+        
+        guard let amountNumber = Int(text) else {
+            return
+        }
+        
+        tipLabel.text = "\(Double(amountNumber) * (23.0 / 100.0))"
+      
+        
     }
-
-// MARK: - EXTENSIONS
-    
-   
     
 }
 
+// MARK: - EXTENSIONS
+
+extension MainViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        
+        
+        return true
+    }
+}
