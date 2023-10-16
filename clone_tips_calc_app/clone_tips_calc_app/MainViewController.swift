@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-// MARK: - Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var amountTextField: UITextField!
     
@@ -25,43 +25,87 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var totalLabel: UILabel!
     
+    // MARK: - LIFE CYCLE
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        calculate()
+        
+        
     }
-// MARK: - ACTIONS
+    
+    // MARK: - SETUP
+    
+    
+    
+    
+    // MARK: - ACTIONS
     
     @IBAction func stepperAction(_ sender: Any) {
-    }
-    
-    
-    
-    
-    func calculate() {
-        guard let text = amountTextField.text else {
-            return
-        }
-        
-        guard let amountNumber = Int(text) else {
-            return
-        }
-        
-        tipLabel.text = "\(Double(amountNumber) * (23.0 / 100.0))"
-      
-        
+        //
     }
     
 }
 
-// MARK: - EXTENSIONS
+// MARK: - LOGIC
+    
+extension MainViewController {
+    
+    func calculate(with text: String ) {
+        guard 
+            let text = amountTextField.text,
+            let money = Int(text)
+        else {
+            return
+        }
+        print("tetx = \(text)")
+        
+        guard 
+            let percentText = percentLabel.text,
+            let percent = Int(percentText)
+        else {
+            return
+        }
+        print("percent = \(percent)")
+        
+        guard
+            let howManyPerson = splitLabel.text,
+            let split = Int(howManyPerson)
+        else {
+            return
+        }
+        
+        
+        let tips = (Double(money) * (Double(percent) / 100.0)).rounded()
+        tipLabel.text = "\(tips)"
+        
+        let totalMoney = (Double(money) + tips).rounded()
+        totalLabel.text = "\(totalMoney)"
+        
+        let tipPerPerson = (tips / Double(split)).rounded()
+        tipPerPersonLabel.text = "\(tipPerPerson)"
+        
+        let totalTips = (tipPerPerson * Double(split)).rounded()
+        totalPerPersonLabel.text = "\(totalTips)"
+        
+        
+    }
+}
+
+
+// MARK: - UITEXTFIELDDELEGATE
 
 extension MainViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        
+        if
+            let text = textField.text,
+            let textRange = Range(range, in: text) {
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            
+            calculate(with: updatedText)
+        }
         
         return true
     }
 }
+
