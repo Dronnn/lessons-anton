@@ -40,7 +40,9 @@ class MainViewController: UIViewController {
     
     
     func calculate() {
-        
+        guard let text = amountTextField.text else {
+            return
+        }
     }
 
 // MARK: - EXTENSIONS
