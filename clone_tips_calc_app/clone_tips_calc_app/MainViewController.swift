@@ -25,24 +25,55 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var totalLabel: UILabel!
     
+    @IBOutlet weak var thirdBlockView: UIView!
+    
+    @IBOutlet weak var secondBlockView: UIView!
+    
+    @IBOutlet weak var firstBlockView: UIView!
+    
+    
     // MARK: - LIFE CYCLE
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        amountTextFieldBecomeFerstResponder()
+        setupCornersRadius()
         
     }
     
     // MARK: - SETUP
     
+    private func thirdBlock(isHidden: Bool) {
+        thirdBlockView.isHidden = isHidden
+    }
     
+    private func setupCornersRadius() {
+        let views: [UIView] = [firstBlockView, secondBlockView, thirdBlockView]
+        for view in views {
+            view.layer.cornerRadius = 10.0
+        }
+    }
     
     
     // MARK: - ACTIONS
     
-    @IBAction func stepperAction(_ sender: Any) {
-        //
+    @IBAction func stepperAction(_ sender: UIStepper) {
+        splitLabel.text = "\(Int(sender.value))"
+        calculate()
+        thirdBlock(isHidden: Int(sender.value) < 2)
+    }
+    
+    @IBAction func roundButtonAction(_ sender: UIButton) {
+//        tipLabel.text
+//        totalLabel.text
+//        tipPerPersonLabel.text
+//        totalPerPersonLabel.text
+    }
+    
+    
+    private func amountTextFieldBecomeFerstResponder() {
+        amountTextField.becomeFirstResponder()
     }
     
 }
@@ -51,44 +82,31 @@ class MainViewController: UIViewController {
     
 extension MainViewController {
     
-    func calculate(with text: String ) {
-        guard 
-            let text = amountTextField.text,
-            let money = Int(text)
-        else {
-            return
-        }
-        print("tetx = \(text)")
+    func calculate(with text: String? = nil ) {
         
-        guard 
-            let percentText = percentLabel.text,
-            let percent = Int(percentText)
-        else {
-            return
-        }
-        print("percent = \(percent)")
+        let text = text ?? amountTextField.text ?? "0.0"
         
         guard
-            let howManyPerson = splitLabel.text,
-            let split = Int(howManyPerson)
+            let money = Double(text),
+            let percentText = percentLabel.text?.replacingOccurrences(of: "%", with: ""),
+            let percent = Double(percentText),
+            let splitText = splitLabel.text,
+            let persons = Double(splitText)
+                
         else {
             return
         }
+        let tips = money * (percent / 100.0)
+        tipLabel.text = String(format: "%.2f", tips)
         
+        let totalMoney = money + tips
+        totalLabel.text = String(format: "%.2f", totalMoney)
         
-        let tips = (Double(money) * (Double(percent) / 100.0)).rounded()
-        tipLabel.text = "\(tips)"
+        let tipPerPerson = tips / persons
+        tipPerPersonLabel.text = String(format: "%.2f", tipPerPerson)
         
-        let totalMoney = (Double(money) + tips).rounded()
-        totalLabel.text = "\(totalMoney)"
-        
-        let tipPerPerson = (tips / Double(split)).rounded()
-        tipPerPersonLabel.text = "\(tipPerPerson)"
-        
-        let totalTips = (tipPerPerson * Double(split)).rounded()
-        totalPerPersonLabel.text = "\(totalTips)"
-        
-        
+        let totalTips = tipPerPerson * persons
+        totalPerPersonLabel.text = String(format: "%.2f", totalTips)
     }
 }
 
