@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		965A6F862ADFEC930032714A /* PercentagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965A6F852ADFEC930032714A /* PercentagesViewController.swift */; };
 		96FC51692AD9536E00D9DEF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC51682AD9536E00D9DEF1 /* AppDelegate.swift */; };
 		96FC516B2AD9536E00D9DEF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC516A2AD9536E00D9DEF1 /* SceneDelegate.swift */; };
 		96FC516D2AD9536E00D9DEF1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC516C2AD9536E00D9DEF1 /* MainViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		965A6F852ADFEC930032714A /* PercentagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentagesViewController.swift; sourceTree = "<group>"; };
 		96FC51652AD9536E00D9DEF1 /* tips calc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tips calc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FC51682AD9536E00D9DEF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96FC516A2AD9536E00D9DEF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				96FC51682AD9536E00D9DEF1 /* AppDelegate.swift */,
 				96FC516A2AD9536E00D9DEF1 /* SceneDelegate.swift */,
 				96FC516C2AD9536E00D9DEF1 /* MainViewController.swift */,
+				965A6F852ADFEC930032714A /* PercentagesViewController.swift */,
 				96FC516E2AD9536E00D9DEF1 /* Main.storyboard */,
 				96FC51712AD9536F00D9DEF1 /* Assets.xcassets */,
 				96FC51732AD9536F00D9DEF1 /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				96FC516D2AD9536E00D9DEF1 /* MainViewController.swift in Sources */,
 				96FC51692AD9536E00D9DEF1 /* AppDelegate.swift in Sources */,
+				965A6F862ADFEC930032714A /* PercentagesViewController.swift in Sources */,
 				96FC516B2AD9536E00D9DEF1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
