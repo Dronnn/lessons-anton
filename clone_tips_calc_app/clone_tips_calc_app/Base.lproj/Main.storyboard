@@ -359,17 +359,39 @@
         <!--Percents View Controller-->
         <scene sceneID="xFA-ed-7TE">
             <objects>
-                <viewController id="W6s-UU-oRN" customClass="PercentsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PercentsViewController" id="W6s-UU-oRN" customClass="PercentsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9jg-da-3gz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AG9-A3-i04">
+                                <rect key="frame" x="16" y="139" width="361" height="663"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sep-bU-NzH">
+                                <rect key="frame" x="322.33333333333331" y="75" width="54.666666666666686" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="LXD-hv-THA"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="lY1-rz-jsg"/>
-                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                        <color key="backgroundColor" red="0.9530718923" green="0.9526031613" blue="0.97255164380000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="AG9-A3-i04" firstAttribute="leading" secondItem="lY1-rz-jsg" secondAttribute="leading" constant="16" id="ABO-uN-vVr"/>
+                            <constraint firstItem="lY1-rz-jsg" firstAttribute="trailing" secondItem="Sep-bU-NzH" secondAttribute="trailing" constant="16" id="Nmn-bo-5NM"/>
+                            <constraint firstItem="lY1-rz-jsg" firstAttribute="trailing" secondItem="AG9-A3-i04" secondAttribute="trailing" constant="16" id="Sla-Ju-GH6"/>
+                            <constraint firstItem="AG9-A3-i04" firstAttribute="top" secondItem="lY1-rz-jsg" secondAttribute="top" constant="80" id="fhf-60-jp1"/>
+                            <constraint firstItem="lY1-rz-jsg" firstAttribute="bottom" secondItem="AG9-A3-i04" secondAttribute="bottom" constant="16" id="nKu-jz-bUt"/>
+                            <constraint firstItem="Sep-bU-NzH" firstAttribute="top" secondItem="lY1-rz-jsg" secondAttribute="top" constant="16" id="zJB-5E-x5h"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXQ-SR-WAz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038" y="18"/>
+            <point key="canvasLocation" x="916.79389312977094" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>
@@ -382,9 +404,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

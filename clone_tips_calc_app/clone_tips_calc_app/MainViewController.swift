@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var amountTextField: UITextField!
-    
+
     @IBOutlet weak var percentLabel: UILabel!
     
     @IBOutlet weak var splitLabel: UILabel!
@@ -65,11 +65,19 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func roundButtonAction(_ sender: UIButton) {
-//        tipLabel.text
-//        totalLabel.text
-//        tipPerPersonLabel.text
-//        totalPerPersonLabel.text
+       
+            if let tipText = tipLabel.text, let totalText = totalLabel.text, let tipPerPersonText = tipPerPersonLabel.text, let totalPerPersonText = totalPerPersonLabel.text {
+                
+                if let tipValue = Double(tipText), let totalValue = Double(totalText), let tipPerPersonValue = Double(tipPerPersonText), let totalPerPersonValue = Double(totalPerPersonText) {
+                    
+                    tipLabel.text = String(Int(ceil(tipValue)))
+                    totalLabel.text = String(Int(ceil(totalValue)))
+                    tipPerPersonLabel.text = String(Int(ceil(tipPerPersonValue)))
+                    totalPerPersonLabel.text = String(Int(ceil(totalPerPersonValue)))
+            }
+        }
     }
+
     
     
     @IBAction func amountRowButtonTap(_ sender: UIButton) {
