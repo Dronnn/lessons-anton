@@ -17,13 +17,13 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var splitLabel: UILabel!
     
-    @IBOutlet weak var tipPerPersonLabel: UILabel!
-    
-    @IBOutlet weak var totalPerPersonLabel: UILabel!
-    
     @IBOutlet weak var tipLabel: UILabel!
     
     @IBOutlet weak var totalLabel: UILabel!
+    
+    @IBOutlet weak var tipPerPersonLabel: UILabel!
+    
+    @IBOutlet weak var totalPerPersonLabel: UILabel!
     
     @IBOutlet weak var thirdBlockView: UIView!
     
@@ -72,6 +72,23 @@ class MainViewController: UIViewController {
     }
     
     
+    @IBAction func amountRowButtonTap(_ sender: UIButton) {
+        amountTextFieldBecomeFerstResponder()
+    }
+    
+    @IBAction func percentRowButtonTap(_ sender: UIButton) {
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PercentsViewController")
+        
+        present(vc, animated: true)
+    }
+    
+    @IBAction func screenTap(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    
+    
     private func amountTextFieldBecomeFerstResponder() {
         amountTextField.becomeFirstResponder()
     }
@@ -96,17 +113,19 @@ extension MainViewController {
         else {
             return
         }
+        
         let tips = money * (percent / 100.0)
         tipLabel.text = String(format: "%.2f", tips)
         
         let totalMoney = money + tips
         totalLabel.text = String(format: "%.2f", totalMoney)
-        
+
         let tipPerPerson = tips / persons
         tipPerPersonLabel.text = String(format: "%.2f", tipPerPerson)
-        
-        let totalTips = tipPerPerson * persons
-        totalPerPersonLabel.text = String(format: "%.2f", totalTips)
+
+        let totalPerPerson = (money / persons) + tipPerPerson
+        totalPerPersonLabel.text = String(format: "%.2f", totalPerPerson)
+
     }
 }
 
