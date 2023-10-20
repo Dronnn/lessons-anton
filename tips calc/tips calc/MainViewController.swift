@@ -73,8 +73,6 @@ class MainViewController: UIViewController {
 
     @IBAction func showPercentagesViewController(_ sender: UIButton) {
         
-//      let vc = PercentagesViewController()
-        
         let vc = UIStoryboard(
             name: "Main",
             bundle: nil
