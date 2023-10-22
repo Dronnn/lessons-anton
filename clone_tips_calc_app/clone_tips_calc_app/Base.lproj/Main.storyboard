@@ -366,7 +366,46 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AG9-A3-i04">
                                 <rect key="frame" x="16" y="139" width="361" height="663"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Vxx-Wy-851" customClass="PercentageTableViewCell" customModule="clone_tips_calc_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="361" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vxx-Wy-851" id="SEW-59-is5">
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-uS-UFn">
+                                                    <rect key="frame" x="36" y="20.333333333333336" width="36.333333333333343" height="19.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" name="AccentColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TCU-9c-sFH">
+                                                    <rect key="frame" x="325" y="22.333333333333336" width="20" height="16.000000000000007"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="K01-JC-LDK"/>
+                                                        <constraint firstAttribute="height" constant="20" id="UF7-bw-VwQ"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qnZ-uS-UFn" firstAttribute="centerY" secondItem="SEW-59-is5" secondAttribute="centerY" id="J6W-3G-p8V"/>
+                                                <constraint firstItem="TCU-9c-sFH" firstAttribute="centerY" secondItem="SEW-59-is5" secondAttribute="centerY" id="YF4-k9-5nL"/>
+                                                <constraint firstAttribute="trailing" secondItem="TCU-9c-sFH" secondAttribute="trailing" constant="16" id="ZFW-co-qqd"/>
+                                                <constraint firstItem="qnZ-uS-UFn" firstAttribute="leading" secondItem="SEW-59-is5" secondAttribute="leadingMargin" constant="16" id="jAG-Mj-cHC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="isHiddenCheckMarkLabel" destination="TCU-9c-sFH" id="T9O-VU-54o"/>
+                                            <outlet property="percentNumberLabel" destination="qnZ-uS-UFn" id="quC-9O-eDi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="W6s-UU-oRN" id="5fy-AP-JOD"/>
+                                    <outlet property="delegate" destination="W6s-UU-oRN" id="Mrp-fp-rCT"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sep-bU-NzH">
                                 <rect key="frame" x="322.33333333333331" y="75" width="54.666666666666686" height="44"/>
@@ -375,19 +414,38 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <connections>
+                                    <action selector="addButtonAction:" destination="W6s-UU-oRN" eventType="touchUpInside" id="3SI-Wx-yhW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgh-aD-FoO">
+                                <rect key="frame" x="16" y="75" width="67" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bod-UG-K2C"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Close"/>
+                                <connections>
+                                    <action selector="closeButtonAction:" destination="W6s-UU-oRN" eventType="touchUpInside" id="7Tc-Ru-9g9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lY1-rz-jsg"/>
                         <color key="backgroundColor" red="0.9530718923" green="0.9526031613" blue="0.97255164380000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="AG9-A3-i04" firstAttribute="leading" secondItem="lY1-rz-jsg" secondAttribute="leading" constant="16" id="ABO-uN-vVr"/>
+                            <constraint firstItem="Bgh-aD-FoO" firstAttribute="leading" secondItem="lY1-rz-jsg" secondAttribute="leading" constant="16" id="DAt-fL-wHF"/>
                             <constraint firstItem="lY1-rz-jsg" firstAttribute="trailing" secondItem="Sep-bU-NzH" secondAttribute="trailing" constant="16" id="Nmn-bo-5NM"/>
                             <constraint firstItem="lY1-rz-jsg" firstAttribute="trailing" secondItem="AG9-A3-i04" secondAttribute="trailing" constant="16" id="Sla-Ju-GH6"/>
                             <constraint firstItem="AG9-A3-i04" firstAttribute="top" secondItem="lY1-rz-jsg" secondAttribute="top" constant="80" id="fhf-60-jp1"/>
                             <constraint firstItem="lY1-rz-jsg" firstAttribute="bottom" secondItem="AG9-A3-i04" secondAttribute="bottom" constant="16" id="nKu-jz-bUt"/>
+                            <constraint firstItem="Bgh-aD-FoO" firstAttribute="top" secondItem="lY1-rz-jsg" secondAttribute="top" constant="16" id="vjO-rg-qAg"/>
                             <constraint firstItem="Sep-bU-NzH" firstAttribute="top" secondItem="lY1-rz-jsg" secondAttribute="top" constant="16" id="zJB-5E-x5h"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="AG9-A3-i04" id="jnk-jT-B3v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXQ-SR-WAz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -395,12 +453,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
