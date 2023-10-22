@@ -41,7 +41,8 @@ class PercentsViewController: UIViewController {
 // MARK: - ACTIONS
     
     @IBAction func addButtonAction(_ sender: UIButton) {
-        //
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddPercentViewController")
+        present(vc, animated: true )
     }
     
     @IBAction func closeButtonAction(_ sender: UIButton) {
@@ -69,7 +70,7 @@ extension PercentsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
        guard
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PercentageTableViewCell", for: indexPath) as? PercentageTableViewCell else { fatalError() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PercentageTableViewCell else { fatalError() }
         
         cell.config(with: PercentageTableViewCell.PecentsModel(number: "\(persentages[indexPath.row])", isHidden: selectedPercent != indexPath))
         
