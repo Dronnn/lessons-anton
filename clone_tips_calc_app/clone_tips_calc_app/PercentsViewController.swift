@@ -23,15 +23,15 @@ class PercentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+//        setupTableView()
         setupAppearence()
     }
 
 // MARK: - SETUP
-    private func setupTableView() {
-        let nib = UINib(nibName: "PercentageTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "PercentageTableViewCell")
-    }
+//    private func setupTableView() {
+//        let nib = UINib(nibName: "PercentageTableViewCell", bundle: nil)
+//        tableView.register(nib, forCellReuseIdentifier: "PercentageTableViewCell")
+//    }
     
     private func setupAppearence() {
         tableView.layer.cornerRadius = 10
@@ -63,13 +63,13 @@ extension PercentsViewController: UITableViewDelegate {
 
 extension PercentsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        persentages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
        guard
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PercentageTableViewCell else { fatalError() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PercentageTableViewCell", for: indexPath) as? PercentageTableViewCell else { fatalError() }
         
         cell.config(with: PercentageTableViewCell.PecentsModel(number: "\(persentages[indexPath.row])", isHidden: selectedPercent != indexPath))
         
