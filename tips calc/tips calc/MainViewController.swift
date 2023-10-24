@@ -29,6 +29,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         amountTextFieldBecomeFirstRespoder()
         setupAppearance()
+        percentSelected()
     }
     
     // MARK: - setup
@@ -42,7 +43,6 @@ class MainViewController: UIViewController {
         tipsView.layer.cornerRadius = 10.0
         totalView.layer.cornerRadius = 10.0
     }
-    
     
     // MARK: - actions
     
@@ -73,12 +73,16 @@ class MainViewController: UIViewController {
 
     @IBAction func showPercentagesViewController(_ sender: UIButton) {
         
-        let vc = UIStoryboard(
-            name: "Main",
-            bundle: nil
-        ).instantiateViewController(
-            withIdentifier: "PercentagesViewController"
-        )
+        guard
+            let vc = UIStoryboard(
+                name: "Main",
+                bundle: nil
+            ).instantiateViewController(
+                withIdentifier: "PercentagesViewController"
+            ) as? PercentagesViewController
+        else { return }
+        
+        vc.delegate = self
         
         present(vc, animated: true)
     }
@@ -137,5 +141,14 @@ extension MainViewController: UITextFieldDelegate {
         }
         
         return true
+    }
+}
+
+// MARK: - PercentagesViewControllerDelegate
+
+extension MainViewController: PercentagesViewControllerDelegate {
+    func percentSelected() {
+        percentLabel.text = "\(DataManager.shared.selectedPercent)%"
+        calculate()
     }
 }

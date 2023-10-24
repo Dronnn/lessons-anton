@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		965A6F862ADFEC930032714A /* PercentagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965A6F852ADFEC930032714A /* PercentagesViewController.swift */; };
+		96973A432AE7DAB900290507 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96973A422AE7DAB900290507 /* DataManager.swift */; };
 		96C9AC092AE29302003D915F /* PercentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C9AC072AE29302003D915F /* PercentCell.swift */; };
 		96C9AC0A2AE29302003D915F /* PercentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C9AC082AE29302003D915F /* PercentCell.xib */; };
 		96FC51692AD9536E00D9DEF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FC51682AD9536E00D9DEF1 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		965A6F852ADFEC930032714A /* PercentagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentagesViewController.swift; sourceTree = "<group>"; };
+		96973A422AE7DAB900290507 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		96C9AC072AE29302003D915F /* PercentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentCell.swift; sourceTree = "<group>"; };
 		96C9AC082AE29302003D915F /* PercentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PercentCell.xib; sourceTree = "<group>"; };
 		96FC51652AD9536E00D9DEF1 /* tips calc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tips calc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 				96FC516A2AD9536E00D9DEF1 /* SceneDelegate.swift */,
 				96FC516C2AD9536E00D9DEF1 /* MainViewController.swift */,
 				965A6F852ADFEC930032714A /* PercentagesViewController.swift */,
+				96973A422AE7DAB900290507 /* DataManager.swift */,
 				96C9AC072AE29302003D915F /* PercentCell.swift */,
 				96C9AC082AE29302003D915F /* PercentCell.xib */,
 				96FC516E2AD9536E00D9DEF1 /* Main.storyboard */,
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96FC516D2AD9536E00D9DEF1 /* MainViewController.swift in Sources */,
+				96973A432AE7DAB900290507 /* DataManager.swift in Sources */,
 				96C9AC092AE29302003D915F /* PercentCell.swift in Sources */,
 				96FC51692AD9536E00D9DEF1 /* AppDelegate.swift in Sources */,
 				965A6F862ADFEC930032714A /* PercentagesViewController.swift in Sources */,

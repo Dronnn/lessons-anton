@@ -25,7 +25,13 @@ class PercentCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = ""
+        checkmakrImageView.isHidden = true
+        layer.cornerRadius = 0
     }
     
     // MARK: - config
