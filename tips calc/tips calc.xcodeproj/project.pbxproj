@@ -45,6 +45,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96712C3D2AEA79CA003E761F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				96973A422AE7DAB900290507 /* DataManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		96712C3E2AEA7D05003E761F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				96712C3F2AEA7D1C003E761F /* MainVC */,
+				96712C402AEA7D26003E761F /* PercentageVC */,
+				96712C412AEA7D33003E761F /* Storyboards */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		96712C3F2AEA7D1C003E761F /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				96FC516C2AD9536E00D9DEF1 /* MainViewController.swift */,
+			);
+			path = MainVC;
+			sourceTree = "<group>";
+		};
+		96712C402AEA7D26003E761F /* PercentageVC */ = {
+			isa = PBXGroup;
+			children = (
+				96712C422AEA7D7B003E761F /* Cells */,
+				965A6F852ADFEC930032714A /* PercentagesViewController.swift */,
+			);
+			path = PercentageVC;
+			sourceTree = "<group>";
+		};
+		96712C412AEA7D33003E761F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				96FC51732AD9536F00D9DEF1 /* LaunchScreen.storyboard */,
+				96FC516E2AD9536E00D9DEF1 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		96712C422AEA7D7B003E761F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				96C9AC072AE29302003D915F /* PercentCell.swift */,
+				96C9AC082AE29302003D915F /* PercentCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		96712C442AEA7DD8003E761F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				96FC51712AD9536F00D9DEF1 /* Assets.xcassets */,
+				96FC51682AD9536E00D9DEF1 /* AppDelegate.swift */,
+				96FC516A2AD9536E00D9DEF1 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		96FC515C2AD9536E00D9DEF1 = {
 			isa = PBXGroup;
 			children = (
@@ -64,16 +127,9 @@
 		96FC51672AD9536E00D9DEF1 /* tips calc */ = {
 			isa = PBXGroup;
 			children = (
-				96FC51682AD9536E00D9DEF1 /* AppDelegate.swift */,
-				96FC516A2AD9536E00D9DEF1 /* SceneDelegate.swift */,
-				96FC516C2AD9536E00D9DEF1 /* MainViewController.swift */,
-				965A6F852ADFEC930032714A /* PercentagesViewController.swift */,
-				96973A422AE7DAB900290507 /* DataManager.swift */,
-				96C9AC072AE29302003D915F /* PercentCell.swift */,
-				96C9AC082AE29302003D915F /* PercentCell.xib */,
-				96FC516E2AD9536E00D9DEF1 /* Main.storyboard */,
-				96FC51712AD9536F00D9DEF1 /* Assets.xcassets */,
-				96FC51732AD9536F00D9DEF1 /* LaunchScreen.storyboard */,
+				96712C442AEA7DD8003E761F /* App */,
+				96712C3D2AEA79CA003E761F /* Model */,
+				96712C3E2AEA7D05003E761F /* Screens */,
 				96FC51762AD9536F00D9DEF1 /* Info.plist */,
 			);
 			path = "tips calc";

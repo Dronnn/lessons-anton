@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PercentagesViewControllerDelegate {
+protocol PercentagesViewControllerDelegate: AnyObject {
     func percentSelected()
 }
 
@@ -31,7 +31,7 @@ class PercentagesViewController: UIViewController {
     
     // MARK: - variables
     
-    var delegate: PercentagesViewControllerDelegate?
+    weak var delegate: PercentagesViewControllerDelegate?
     
     // MARK: - life cycle
     
