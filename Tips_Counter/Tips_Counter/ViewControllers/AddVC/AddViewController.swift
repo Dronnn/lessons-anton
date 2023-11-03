@@ -10,11 +10,16 @@ import UIKit
 class AddViewController: UIViewController {
     
     
+    
 // MARK: - OUTLETS
     
     @IBOutlet weak var rowView: UIView!
     
     @IBOutlet weak var addPercentTextField: UITextField!
+    
+    var addCompletion: (() -> Void)?
+    
+    
     
 // MARK: - LIFE CYCLE
 
@@ -35,6 +40,7 @@ class AddViewController: UIViewController {
     
     @IBAction func saveButtonAction(_ sender: UIButton) {
         DataManager.shared.percentagesArray.append(addNew())
+        addCompletion?()
         dismiss(animated: true)
     }
     
@@ -65,17 +71,3 @@ extension AddViewController {
     }
 }
 
-
-// MARK: UITEXTFIELDDELEGATE
-
-extension AddViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if
-            let text = addPercentTextField.text,
-            let textRange = Range(range, in: text)
-        {
-            let updateText = text.replacingCharacters(in: textRange, with: string)
-        }
-        return true
-    }
-}

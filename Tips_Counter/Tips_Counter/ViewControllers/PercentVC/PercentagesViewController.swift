@@ -76,7 +76,11 @@ class PercentagesViewController: UIViewController {
     }
     
     @IBAction func addButtonAction(_ sender: UIButton) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddViewController")
+       guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddViewController")
+                as? AddViewController else { return }
+        vc.addCompletion = { [ weak self ] in
+            self?.tableView.reloadData()
+        }
         present(vc, animated: true)
     }
     

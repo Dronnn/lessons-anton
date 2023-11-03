@@ -93,8 +93,9 @@ class MainViewController: UIViewController {
     
     @IBAction func percentsButtonAction(_ sender: UIButton) {
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PercentagesViewController")
-        
+       guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PercentagesViewController")
+                as? PercentagesViewController else { return }
+        vc.delegate = self
         present(vc, animated: true)
     }
     
