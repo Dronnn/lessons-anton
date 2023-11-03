@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -368,37 +368,33 @@
                                 <rect key="frame" x="16" y="139" width="361" height="663"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="Vxx-Wy-851" customClass="PercentageTableViewCell" customModule="clone_tips_calc_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="361" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="JXg-HI-gOv" customClass="PercentageTableViewCell">
+                                        <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PercentageTableViewCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vxx-Wy-851" id="SEW-59-is5" customClass="UITableViewCell">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="60"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JXg-HI-gOv" id="5Lh-5F-4Wa">
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-uS-UFn">
-                                                    <rect key="frame" x="36" y="20.333333333333336" width="36.333333333333343" height="19.333333333333336"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6Y-bo-GDB">
+                                                    <rect key="frame" x="36" y="11.333333333333336" width="33" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TCU-9c-sFH">
-                                                    <rect key="frame" x="325" y="22.333333333333336" width="20" height="16.000000000000007"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="K01-JC-LDK"/>
-                                                        <constraint firstAttribute="height" constant="20" id="UF7-bw-VwQ"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YUS-Wc-ZDC">
+                                                    <rect key="frame" x="306.66666666666669" y="14.333333333333336" width="18.333333333333314" height="15.999999999999993"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="qnZ-uS-UFn" firstAttribute="centerY" secondItem="SEW-59-is5" secondAttribute="centerY" id="J6W-3G-p8V"/>
-                                                <constraint firstItem="TCU-9c-sFH" firstAttribute="centerY" secondItem="SEW-59-is5" secondAttribute="centerY" id="YF4-k9-5nL"/>
-                                                <constraint firstAttribute="trailing" secondItem="TCU-9c-sFH" secondAttribute="trailing" constant="16" id="ZFW-co-qqd"/>
-                                                <constraint firstItem="qnZ-uS-UFn" firstAttribute="leading" secondItem="SEW-59-is5" secondAttribute="leadingMargin" constant="16" id="jAG-Mj-cHC"/>
+                                                <constraint firstItem="f6Y-bo-GDB" firstAttribute="leading" secondItem="5Lh-5F-4Wa" secondAttribute="leadingMargin" constant="16" id="E6D-e4-Vik"/>
+                                                <constraint firstItem="YUS-Wc-ZDC" firstAttribute="centerY" secondItem="5Lh-5F-4Wa" secondAttribute="centerY" id="QzJ-zg-VXV"/>
+                                                <constraint firstItem="YUS-Wc-ZDC" firstAttribute="trailing" secondItem="5Lh-5F-4Wa" secondAttribute="trailingMargin" constant="-16" id="UKH-hH-sL6"/>
+                                                <constraint firstItem="f6Y-bo-GDB" firstAttribute="centerY" secondItem="5Lh-5F-4Wa" secondAttribute="centerY" id="ajc-M5-R1L"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="isHiddenCheckMarkLabel" destination="TCU-9c-sFH" id="T9O-VU-54o"/>
-                                            <outlet property="percentNumberLabel" destination="qnZ-uS-UFn" id="quC-9O-eDi"/>
+                                            <outlet property="isHiddenCheckMarkLabel" destination="YUS-Wc-ZDC" id="opR-tu-Spi"/>
+                                            <outlet property="percentNumberLabel" destination="f6Y-bo-GDB" id="EcH-qV-EGi"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -474,7 +470,7 @@
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
