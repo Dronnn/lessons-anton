@@ -13,4 +13,5 @@ enum Operation {
     case multiply // (Double, Double)
     case devide // (Double, Double)
     case equal
+    case clear
 }

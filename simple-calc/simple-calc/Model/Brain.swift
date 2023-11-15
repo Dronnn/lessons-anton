@@ -23,11 +23,13 @@ final class Brain {
 
     var rezultHandler: ((Double) -> Void)?
 
-    func digitPressed(_ digit: Double) {
+    func digitPressed(_ digit: Double) -> Double {
         if operation == nil {
-            operand1 = digit
+            operand1 = (operand1 ?? 0) * 10 + digit
+            return operand1 ?? 0.0
         } else {
-            operand2 = digit
+            operand2 = (operand2 ?? 0) * 10 + digit
+            return operand2 ?? 0.0
         }
     }
 
@@ -58,5 +60,11 @@ final class Brain {
             return operand1 / operand2
         default: return 0
         }
+    }
+
+    func clear() {
+        operand1 = nil
+        operand2 = nil
+        operation = nil
     }
 }

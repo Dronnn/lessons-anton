@@ -33,24 +33,36 @@ final class Presenter {
     // MARK: - handle vc events
 
     func digitPressed(_ text: Int) {
-        setupNumberToDisplay(Double(text))
+//        setupNumberToDisplay(Double(text))
         let digit = Double(text)
-        brain.digitPressed(digit)
+        let number = brain.digitPressed(digit)
         if brain.isDouble {
 //            setupNumberToDisplay(digit)
         } else {
             if brain.operation != nil {
                 clearDisplay()
-                setupNumberToDisplay(digit)
+                setupNumberToDisplay(number)
             } else {
-                setupNumberToDisplay(digit)
+                setupNumberToDisplay(number)
             }
         }
     }
 
     func operationPressed(_ operation: Operation) {
         brain.operationPressed(operation)
-        if operation != .equal {
+        switch operation {
+        case .summ:
+            break
+        case .subtract:
+            break
+        case .multiply:
+            break
+        case .devide:
+            break
+        case .equal:
+            break
+        case .clear:
+            brain.clear()
             clearDisplay()
         }
     }
@@ -68,6 +80,6 @@ final class Presenter {
     }
 
     func clearDisplay() {
-        viewController?.clearDisplay()
+        viewController?.setupToDisplay("0")
     }
 }

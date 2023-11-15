@@ -134,6 +134,13 @@ final class ViewController: UIViewController {
     func setupButtonAC() {
         buttonAC.setTitle("AC", for: .normal)
         buttonAC.backgroundColor = .orange
+        buttonAC.layer.borderWidth = 1.0
+        buttonAC.layer.borderColor = UIColor.black.cgColor
+        buttonAC.addTarget(
+            self,
+            action: #selector(buttonACPressed),
+            for: .touchUpInside
+        )
         buttonAC.snp.makeConstraints { make in
             make.top.equalTo(displayView.snp.bottom)
             make.left.equalTo(view.snp.left)
@@ -145,6 +152,8 @@ final class ViewController: UIViewController {
     func setupButtonPlusMinus() {
         buttonPlusMinus.setTitle("+/-", for: .normal)
         buttonPlusMinus.backgroundColor = .orange
+        buttonPlusMinus.layer.borderWidth = 1.0
+        buttonPlusMinus.layer.borderColor = UIColor.black.cgColor
         buttonPlusMinus.snp.makeConstraints { make in
             make.top.equalTo(displayView.snp.bottom)
             make.left.equalTo(buttonAC.snp.right)
@@ -156,6 +165,8 @@ final class ViewController: UIViewController {
     func setupButtonPercent() {
         buttonPercent.setTitle("%", for: .normal)
         buttonPercent.backgroundColor = .orange
+        buttonPercent.layer.borderWidth = 1.0
+        buttonPercent.layer.borderColor = UIColor.black.cgColor
         buttonPercent.snp.makeConstraints { make in
             make.top.equalTo(displayView.snp.bottom)
             make.left.equalTo(buttonPlusMinus.snp.right)
@@ -167,6 +178,8 @@ final class ViewController: UIViewController {
     func setupButtonDivide() {
         buttonDivide.setTitle("/", for: .normal)
         buttonDivide.backgroundColor = .orange
+        buttonDivide.layer.borderWidth = 1.0
+        buttonDivide.layer.borderColor = UIColor.black.cgColor
         buttonDivide.snp.makeConstraints { make in
             make.top.equalTo(buttonAC.snp.top)
             make.left.equalTo(buttonPercent.snp.right)
@@ -176,8 +189,10 @@ final class ViewController: UIViewController {
     }
 
     func setupButtonMultiply() {
-        buttonMultiply.setTitle("X", for: .normal)
+        buttonMultiply.setTitle("*", for: .normal)
         buttonMultiply.backgroundColor = .orange
+        buttonMultiply.layer.borderWidth = 1.0
+        buttonMultiply.layer.borderColor = UIColor.black.cgColor
         buttonMultiply.snp.makeConstraints { make in
             make.top.equalTo(buttonDivide.snp.bottom)
             make.right.equalTo(view.snp.right)
@@ -189,6 +204,8 @@ final class ViewController: UIViewController {
     func setupButtonSubtract() {
         buttonSubtract.setTitle("-", for: .normal)
         buttonSubtract.backgroundColor = .orange
+        buttonSubtract.layer.borderWidth = 1.0
+        buttonSubtract.layer.borderColor = UIColor.black.cgColor
         buttonSubtract.snp.makeConstraints { make in
             make.top.equalTo(buttonMultiply.snp.bottom)
             make.right.equalTo(view.snp.right)
@@ -200,6 +217,8 @@ final class ViewController: UIViewController {
     func setupButtonAdd() {
         buttonAdd.setTitle("+", for: .normal)
         buttonAdd.backgroundColor = .orange
+        buttonAdd.layer.borderWidth = 1.0
+        buttonAdd.layer.borderColor = UIColor.black.cgColor
         buttonAdd.addTarget(self, action: #selector(buttonPlusPressed), for: .touchUpInside)
         buttonAdd.snp.makeConstraints { make in
             make.top.equalTo(buttonSubtract.snp.bottom)
@@ -212,6 +231,8 @@ final class ViewController: UIViewController {
     func setupButtonEquals() {
         buttonEquals.setTitle("=", for: .normal)
         buttonEquals.backgroundColor = .orange
+        buttonEquals.layer.borderWidth = 1.0
+        buttonEquals.layer.borderColor = UIColor.black.cgColor
         buttonEquals.addTarget(self, action: #selector(buttonEqualPressed), for: .touchUpInside)
         buttonEquals.snp.makeConstraints { make in
             make.top.equalTo(buttonAdd.snp.bottom)
@@ -224,9 +245,17 @@ final class ViewController: UIViewController {
     func setupButtonZero() {
         buttonZero.setTitle("0", for: .normal)
         buttonZero.backgroundColor = .darkGray
+        buttonZero.layer.borderWidth = 1.0
+        buttonZero.layer.borderColor = UIColor.black.cgColor
+        buttonZero.tag = 0
+        buttonZero.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonZero.snp.makeConstraints { make in
             make.left.equalTo(view.snp.left)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(buttonEquals.snp.bottom)
             make.height.equalTo(buttonAC.snp.height)
             make.width.equalTo(buttonAC.snp.width).multipliedBy(2)
         }
@@ -235,8 +264,10 @@ final class ViewController: UIViewController {
     func setupButtonDecimal() {
         buttonDecimal.setTitle(",", for: .normal)
         buttonDecimal.backgroundColor = .darkGray
+        buttonDecimal.layer.borderWidth = 1.0
+        buttonDecimal.layer.borderColor = UIColor.black.cgColor
         buttonDecimal.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(buttonEquals.snp.bottom)
             make.left.equalTo(buttonZero.snp.right)
             make.height.equalTo(buttonZero.snp.height)
             make.width.equalTo(buttonAC.snp.width)
@@ -246,7 +277,14 @@ final class ViewController: UIViewController {
     func setupButtonOne() {
         buttonOne.setTitle("1", for: .normal)
         buttonOne.backgroundColor = .darkGray
-        buttonOne.addTarget(self, action: #selector(buttonOnePressed), for: .touchUpInside)
+        buttonOne.layer.borderWidth = 1.0
+        buttonOne.layer.borderColor = UIColor.black.cgColor
+        buttonOne.tag = 1
+        buttonOne.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonOne.snp.makeConstraints { make in
             make.left.equalTo(view.snp.left)
             make.bottom.equalTo(buttonZero.snp.top)
@@ -258,7 +296,14 @@ final class ViewController: UIViewController {
     func setupButtonTwo() {
         buttonTwo.setTitle("2", for: .normal)
         buttonTwo.backgroundColor = .darkGray
-        buttonTwo.addTarget(self, action: #selector(buttonTwoPressed), for: .touchUpInside)
+        buttonTwo.layer.borderWidth = 1.0
+        buttonTwo.layer.borderColor = UIColor.black.cgColor
+        buttonTwo.tag = 2
+        buttonTwo.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonTwo.snp.makeConstraints { make in
             make.left.equalTo(buttonOne.snp.right)
             make.bottom.equalTo(buttonZero.snp.top)
@@ -270,6 +315,14 @@ final class ViewController: UIViewController {
     func setupButtonThree() {
         buttonThree.setTitle("3", for: .normal)
         buttonThree.backgroundColor = .darkGray
+        buttonThree.layer.borderWidth = 1.0
+        buttonThree.layer.borderColor = UIColor.black.cgColor
+        buttonThree.tag = 3
+        buttonThree.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonThree.snp.makeConstraints { make in
             make.left.equalTo(buttonTwo.snp.right)
             make.bottom.equalTo(buttonZero.snp.top)
@@ -281,6 +334,14 @@ final class ViewController: UIViewController {
     func setupButtonFour() {
         buttonFour.setTitle("4", for: .normal)
         buttonFour.backgroundColor = .darkGray
+        buttonFour.layer.borderWidth = 1.0
+        buttonFour.layer.borderColor = UIColor.black.cgColor
+        buttonFour.tag = 4
+        buttonFour.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonFour.snp.makeConstraints { make in
             make.left.equalTo(view.snp.left)
             make.bottom.equalTo(buttonOne.snp.top)
@@ -292,6 +353,14 @@ final class ViewController: UIViewController {
     func setupButtonFive() {
         buttonFive.setTitle("5", for: .normal)
         buttonFive.backgroundColor = .darkGray
+        buttonFive.layer.borderWidth = 1.0
+        buttonFive.layer.borderColor = UIColor.black.cgColor
+        buttonFive.tag = 5
+        buttonFive.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonFive.snp.makeConstraints { make in
             make.left.equalTo(buttonFour.snp.right)
             make.bottom.equalTo(buttonTwo.snp.top)
@@ -303,6 +372,14 @@ final class ViewController: UIViewController {
     func setupButtonSix() {
         buttonSix.setTitle("6", for: .normal)
         buttonSix.backgroundColor = .darkGray
+        buttonSix.layer.borderWidth = 1.0
+        buttonSix.layer.borderColor = UIColor.black.cgColor
+        buttonSix.tag = 6
+        buttonSix.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonSix.snp.makeConstraints { make in
             make.left.equalTo(buttonFive.snp.right)
             make.bottom.equalTo(buttonThree.snp.top)
@@ -314,6 +391,14 @@ final class ViewController: UIViewController {
     func setupButtonSeven() {
         buttonSeven.setTitle("7", for: .normal)
         buttonSeven.backgroundColor = .darkGray
+        buttonSeven.layer.borderWidth = 1.0
+        buttonSeven.layer.borderColor = UIColor.black.cgColor
+        buttonSeven.tag = 7
+        buttonSeven.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonSeven.snp.makeConstraints { make in
             make.left.equalTo(view.snp.left)
             make.bottom.equalTo(buttonFour.snp.top)
@@ -325,6 +410,14 @@ final class ViewController: UIViewController {
     func setupButtonEight() {
         buttonEight.setTitle("8", for: .normal)
         buttonEight.backgroundColor = .darkGray
+        buttonEight.layer.borderWidth = 1.0
+        buttonEight.layer.borderColor = UIColor.black.cgColor
+        buttonEight.tag = 8
+        buttonEight.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonEight.snp.makeConstraints { make in
             make.left.equalTo(buttonSeven.snp.right)
             make.bottom.equalTo(buttonFive.snp.top)
@@ -336,7 +429,14 @@ final class ViewController: UIViewController {
     func setupButtonNine() {
         buttonNine.setTitle("9", for: .normal)
         buttonNine.backgroundColor = .darkGray
+        buttonNine.layer.borderWidth = 1.0
+        buttonNine.layer.borderColor = UIColor.black.cgColor
         buttonNine.tag = 9
+        buttonNine.addTarget(
+            self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         buttonNine.snp.makeConstraints { make in
             make.left.equalTo(buttonEight.snp.right)
             make.bottom.equalTo(buttonSix.snp.top)
@@ -358,22 +458,18 @@ final class ViewController: UIViewController {
     }
 
     @objc
-    private func buttonOnePressed() {
-        presenter.digitPressed(1)
+    private func buttonACPressed() {
+        presenter.operationPressed(.clear)
     }
 
     @objc
-    private func buttonTwoPressed() {
-        presenter.digitPressed(2)
+    private func buttonPressed(_ sender: UIButton) {
+        presenter.digitPressed(sender.tag)
     }
 
     // MARK: - presenter actions
 
     func setupToDisplay(_ string: String) {
         displayLabel.text = string
-    }
-
-    func clearDisplay() {
-        displayLabel.text = "0"
     }
 }
