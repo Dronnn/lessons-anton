@@ -7,7 +7,11 @@
 
 import Foundation
 
-class DashboardViewModel {
+protocol DashboardViewModelProtocol {
+    var callback: (() -> Void)? { get set }
+}
+
+class DashboardViewModel: DashboardViewModelProtocol {
 
     // MARK: - callbacks
 

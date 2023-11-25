@@ -14,13 +14,13 @@ class DashboardViewController: UIViewController {
     private lazy var tableView = {
         let table = UITableView(frame: .zero)
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.backgroundColor = .blue
+//        table.backgroundColor = .blue
         return table
     }()
 
     // MARK: - properties
 
-    private let viewModel: DashboardViewModel
+    private var viewModel: DashboardViewModelProtocol
 
     // MARK: - life cycle
 
@@ -35,7 +35,9 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+//        view.backgroundColor = .red
+
+        title = "Dashboard"
 
         bind()
         setupTableView()
@@ -45,13 +47,15 @@ class DashboardViewController: UIViewController {
 
     private func bind() {
         viewModel.callback = {
-
+            
         }
     }
 
     // MARK: - setup
 
     private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -61,4 +65,26 @@ class DashboardViewController: UIViewController {
         ])
     }
 
+}
+
+extension DashboardViewController: UITableViewDelegate {
+
+}
+
+extension DashboardViewController: UITableViewDataSource {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        10
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.backgroundColor = .red
+        return cell
+    }
 }
