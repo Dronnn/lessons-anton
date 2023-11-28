@@ -48,8 +48,7 @@ class AddViewController: UIViewController {
         addPercentTextFieldBecomeFirstResponder()
     }
     
-    @IBAction func deleteButtonAction(_ sender: UIButton) {
-    }
+   
     
     
 // MARK: - SETUP

@@ -70,6 +70,9 @@ class PercentagesViewController: UIViewController {
     
 // MARK: - ACTIONS
     
+    @IBAction func deleteButtonAction(_ sender: UIButton) {
+        tableView.isEditing.toggle()
+    }
     
     @IBAction func closeButtonAction(_ sender: UIButton) {
         dismiss(animated: true)
@@ -90,6 +93,31 @@ class PercentagesViewController: UIViewController {
 // MARK: - DATASOURCE
 
 extension PercentagesViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == 3 {
+            false
+        } else {
+            true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath.row % 2 == 0 {
+            .insert
+        } else {
+            .delete
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            DataManager.shared.percentagesArray.remove(at: indexPath.row)
+        } else if editingStyle == .insert {
+            DataManager.shared.percentagesArray.append(Int.random(in: 100...1000))
+        }
+        tableView.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         DataManager.shared.percentagesArray.count

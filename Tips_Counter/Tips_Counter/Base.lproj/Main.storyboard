@@ -417,6 +417,16 @@
                                     <action selector="addButtonAction:" destination="wgm-S4-jJK" eventType="touchUpInside" id="i72-x8-a8H"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3i-Z6-oG9">
+                                <rect key="frame" x="250.66666666666666" y="79.666666666666671" width="73.333333333333343" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Delete">
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteButtonAction:" destination="wgm-S4-jJK" eventType="touchUpInside" id="ySu-vJ-eYS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z4F-ql-Ut6"/>
                         <color key="backgroundColor" name="backColor"/>
@@ -425,7 +435,9 @@
                             <constraint firstItem="T9D-To-Cty" firstAttribute="top" secondItem="Z4F-ql-Ut6" secondAttribute="top" constant="16" id="3eC-wx-o7Z"/>
                             <constraint firstItem="F1w-Kw-21L" firstAttribute="leading" secondItem="Z4F-ql-Ut6" secondAttribute="leading" constant="16" id="EdD-Ui-Vzs"/>
                             <constraint firstItem="ZV1-DS-hrk" firstAttribute="top" secondItem="Z4F-ql-Ut6" secondAttribute="top" constant="16" id="La7-re-Gzf"/>
+                            <constraint firstItem="ZV1-DS-hrk" firstAttribute="leading" secondItem="O3i-Z6-oG9" secondAttribute="trailing" constant="-1.6666666666666856" id="R3d-yC-KTJ"/>
                             <constraint firstItem="F1w-Kw-21L" firstAttribute="top" secondItem="Z4F-ql-Ut6" secondAttribute="top" constant="85" id="XbH-Ez-PSR"/>
+                            <constraint firstItem="O3i-Z6-oG9" firstAttribute="centerY" secondItem="ZV1-DS-hrk" secondAttribute="centerY" id="bcL-2n-FuL"/>
                             <constraint firstItem="Z4F-ql-Ut6" firstAttribute="trailing" secondItem="F1w-Kw-21L" secondAttribute="trailing" constant="16" id="bfM-5F-zVd"/>
                             <constraint firstItem="Z4F-ql-Ut6" firstAttribute="bottom" secondItem="F1w-Kw-21L" secondAttribute="bottom" constant="16" id="ewD-KR-kbr"/>
                             <constraint firstItem="Z4F-ql-Ut6" firstAttribute="trailing" secondItem="ZV1-DS-hrk" secondAttribute="trailing" constant="16" id="oqL-Tj-IkC"/>
@@ -515,16 +527,6 @@
                                     <constraint firstAttribute="height" constant="50" id="r8A-6C-IDh"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Za-1o-tWT">
-                                <rect key="frame" x="237.66666666666666" y="79.666666666666671" width="73.333333333333343" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Delete">
-                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="deleteButtonAction:" destination="Ird-Qw-hpK" eventType="touchUpInside" id="wKl-o6-c6D"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fLI-Gb-uT6"/>
                         <color key="backgroundColor" name="backColor"/>
@@ -533,9 +535,7 @@
                             <constraint firstItem="kwd-gc-CCs" firstAttribute="top" secondItem="fLI-Gb-uT6" secondAttribute="top" constant="16" id="2fl-S2-Xgc"/>
                             <constraint firstItem="1Ce-V0-XU7" firstAttribute="top" secondItem="JVz-qs-Xg4" secondAttribute="bottom" constant="16" id="8cq-2V-SuW"/>
                             <constraint firstItem="JVz-qs-Xg4" firstAttribute="centerX" secondItem="WWJ-ly-H4c" secondAttribute="centerX" id="Bin-pB-JCX"/>
-                            <constraint firstItem="kwd-gc-CCs" firstAttribute="leading" secondItem="8Za-1o-tWT" secondAttribute="trailing" constant="5" id="JUY-sV-YAd"/>
                             <constraint firstItem="fLI-Gb-uT6" firstAttribute="trailing" secondItem="kwd-gc-CCs" secondAttribute="trailing" constant="16" id="Pbc-z3-Cze"/>
-                            <constraint firstItem="8Za-1o-tWT" firstAttribute="centerY" secondItem="kwd-gc-CCs" secondAttribute="centerY" id="Q7a-MM-MkQ"/>
                             <constraint firstItem="fLI-Gb-uT6" firstAttribute="trailing" secondItem="1Ce-V0-XU7" secondAttribute="trailing" constant="20" id="TK5-fe-6mS"/>
                             <constraint firstItem="1Ce-V0-XU7" firstAttribute="leading" secondItem="JVz-qs-Xg4" secondAttribute="leading" id="ddH-me-xai"/>
                             <constraint firstItem="JVz-qs-Xg4" firstAttribute="top" secondItem="WWJ-ly-H4c" secondAttribute="bottom" constant="29" id="kRp-nd-M1G"/>
