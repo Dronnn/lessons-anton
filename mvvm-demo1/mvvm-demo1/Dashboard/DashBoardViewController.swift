@@ -49,10 +49,15 @@ class DashBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backCol
-        
+
         title = "Dashboard"
         bind()
         setupTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .always
     }
 
     // MARK: BIND
@@ -84,6 +89,7 @@ class DashBoardViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+
 }
 
 extension DashBoardViewController: UITableViewDelegate {
@@ -100,10 +106,16 @@ extension DashBoardViewController: UITableViewDelegate {
             return Const.historyCellHeigh
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailsViewController()
+        vc.opetation = viewModel.operations[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension DashBoardViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         Sections.allCases.count
     }
@@ -118,7 +130,7 @@ extension DashBoardViewController: UITableViewDataSource {
         case .info:
             return 1
         case .recent:
-            return 10
+            return viewModel.operations.count
         }
     }
     
@@ -166,6 +178,7 @@ extension DashBoardViewController {
         else {
             return UITableViewCell()
         }
+        cell.setup(operation: viewModel.operations[indexPath.row])
         return cell
     }
 }

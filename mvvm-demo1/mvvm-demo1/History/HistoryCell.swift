@@ -28,5 +28,9 @@ class HistoryCell: UITableViewCell {
         backgroundColor = .red
     }
 
+    func setup(operation: Operation) {
+        print(operation)
+    }
+
 }
 
