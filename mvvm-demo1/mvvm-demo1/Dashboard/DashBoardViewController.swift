@@ -9,91 +9,28 @@ import UIKit
 
 class DashBoardViewController: UIViewController {
     
+    // MARK: - sections
+
+    private enum Sections: Int, CaseIterable {
+        case info
+        case recent
+    }
+
+    // MARK: - Const
+
+    private enum Const { // namespace
+        static let infoCellHeigh: CGFloat = 180.0
+        static let historyCellHeigh: CGFloat = 44.0
+    }
+
     // MARK: subviews
     
     private lazy var tableView = {
         let table = UITableView(frame: .zero)
         table.translatesAutoresizingMaskIntoConstraints = false
-//        table.backgroundColor = .blue
         return table
     }()
-    
-    private lazy var cellView = {
-        let view = UIView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        return view
-    }()
-    
-    
-    private lazy var horizontalLineView = {
-        let view = UIView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .gray
-        return view
-    }()
-    
-    private lazy var verticalLineView = {
-        let view = UIView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .gray
-        return view
-    }()
-    
-    private lazy var balanceTextLabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "Balance"
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var balanceMoneyLabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "$ 6,150"
-        label.textColor = .black
-        label.font = .boldSystemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var incomeTextLabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "Income"
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var incomeMoneyLabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "$ 10,000"
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var expenceTextLabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "Expence"
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var expenceMoneyLabel = {
-        let label = UILabel(frame: .zero)
-        label.text = "$ 3,850"
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-//    private lazy var incomeImageView = {
-//        
-//    }()
-    
-    
+        
     // MARK: properties
     
     private var viewModel: DashboardViewModelProtocol
@@ -102,7 +39,7 @@ class DashBoardViewController: UIViewController {
 
     init(viewModel: DashBoardViewModel) {
         self.viewModel = viewModel
-        super .init(nibName: nil, bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -112,19 +49,22 @@ class DashBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backCol
-        
+
         title = "Dashboard"
         bind()
         setupTableView()
-        setupCellView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .always
+    }
 
     // MARK: BIND
     
     private func bind() {
         viewModel.callback = {
-            
+            //
         }
     }
     
@@ -134,7 +74,14 @@ class DashBoardViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.rowHeight = 180
+        tableView.register(
+            InfoCell.self,
+            forCellReuseIdentifier: InfoCell.identifier
+        )
+        tableView.register(
+            HistoryCell.self,
+            forCellReuseIdentifier: HistoryCell.identifier
+        )
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -142,72 +89,96 @@ class DashBoardViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-    
-    private func setupCellView() {
-        cellView.addSubview(horizontalLineView)
-        cellView.addSubview(verticalLineView)
-        cellView.addSubview(balanceTextLabel)
-        cellView.addSubview(balanceMoneyLabel)
-        cellView.addSubview(incomeTextLabel)
-        cellView.addSubview(incomeMoneyLabel)
-        cellView.addSubview(expenceTextLabel)
-        cellView.addSubview(expenceMoneyLabel)
-        NSLayoutConstraint.activate([
-            horizontalLineView.heightAnchor.constraint(equalToConstant: 1),
-            horizontalLineView.centerXAnchor.constraint(equalTo: cellView.centerXAnchor),
-            horizontalLineView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
-            horizontalLineView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -10),
-            horizontalLineView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 10),
-            
-            verticalLineView.widthAnchor.constraint(equalToConstant: 1),
-            verticalLineView.centerXAnchor.constraint(equalTo: cellView.centerXAnchor),
-            verticalLineView.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -10),
-            verticalLineView.topAnchor.constraint(equalTo: horizontalLineView.bottomAnchor, constant: 10),
-            
-            balanceTextLabel.centerXAnchor.constraint(equalTo: cellView.centerXAnchor),
-            balanceTextLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 15),
-            
-            
-            balanceMoneyLabel.centerXAnchor.constraint(equalTo: cellView.centerXAnchor),
-            balanceMoneyLabel.topAnchor.constraint(equalTo: balanceTextLabel.bottomAnchor, constant: 5),
-            
-            incomeTextLabel.topAnchor.constraint(equalTo: horizontalLineView.bottomAnchor, constant: 15),
-            incomeTextLabel.trailingAnchor.constraint(equalTo: verticalLineView.leadingAnchor, constant: -35),
-            
-            incomeMoneyLabel.topAnchor.constraint(equalTo: incomeTextLabel.bottomAnchor, constant: 5),
-            incomeMoneyLabel.trailingAnchor.constraint(equalTo: verticalLineView.leadingAnchor, constant: -25),
-            
-            expenceTextLabel.topAnchor.constraint(equalTo: horizontalLineView.bottomAnchor, constant: 15),
-            expenceTextLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -35),
-            
-            expenceMoneyLabel.topAnchor.constraint(equalTo: expenceTextLabel.bottomAnchor, constant: 5),
-            expenceMoneyLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -35),
-        ])
-    }
-    
+
 }
 
 extension DashBoardViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard
+            let sectionName = Sections(rawValue: indexPath.section)
+        else {
+            fatalError()
+        }
+        switch sectionName {
+        case .info:
+            return Const.infoCellHeigh
+        case .recent:
+            return Const.historyCellHeigh
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailsViewController()
+        vc.opetation = viewModel.operations[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension DashBoardViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        Sections.allCases.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        guard
+            let sectionName = Sections(rawValue: section)
+        else {
+            fatalError()
+        }
+        switch sectionName {
+        case .info:
+            return 1
+        case .recent:
+            return viewModel.operations.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = .backCol
-        
-        cell.addSubview(cellView)
-        NSLayoutConstraint.activate([
-            cellView.topAnchor.constraint(equalTo: cell.topAnchor, constant: 10),
-            cellView.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -10),
-            cellView.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 10),
-            cellView.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -10)
-        ])
-        cellView.layer.cornerRadius = 20
+        guard
+            let sectionName = Sections(rawValue: indexPath.section)
+        else {
+            fatalError()
+        }
+        switch sectionName {
+        case .info:
+            return sectionFirstCell(tableView, cellForRowAt: indexPath)
+        case .recent:
+            return sectionSecondCell(tableView, cellForRowAt: indexPath)
+        }
+    }
+}
+
+extension DashBoardViewController {
+
+    private func sectionFirstCell(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    )  -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: InfoCell.identifier,
+                for: indexPath
+            ) as? InfoCell
+        else {
+            return UITableViewCell()
+        }
+        return cell
+    }
+
+    private func sectionSecondCell(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    )  -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: HistoryCell.identifier,
+                for: indexPath
+            ) as? HistoryCell
+        else {
+            return UITableViewCell()
+        }
+        cell.setup(operation: viewModel.operations[indexPath.row])
         return cell
     }
 }
