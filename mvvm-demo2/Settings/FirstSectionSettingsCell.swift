@@ -37,6 +37,7 @@ class FirstSectionSettingsCell: UITableViewCell {
        let image = UIImageView(image: UIImage(named: "photo"))
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 25
+        image.clipsToBounds = true
         return image
     }()
 
@@ -50,6 +51,13 @@ class FirstSectionSettingsCell: UITableViewCell {
         required init?(coder: NSCoder) {
             super.init(coder: coder)
             setupCellView()
+        }
+    
+        override func prepareForReuse() {
+            super.prepareForReuse()
+            nameLabel.text = nil
+            professionLabel.text = nil
+            photoImage.image = nil
         }
     
     // MARK: Setups
@@ -76,6 +84,13 @@ class FirstSectionSettingsCell: UITableViewCell {
             professionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 3),
             professionLabel.leadingAnchor.constraint(equalTo: photoImage.trailingAnchor, constant: 25)
         ])
+    }
+    
+    
+    func setup(name: String, profession: String, image: UIImage?) {
+        nameLabel.text = name
+        professionLabel.text = profession
+        photoImage.image = image
     }
     
 }

@@ -39,7 +39,7 @@ class ThirdSectionCell: UITableViewCell {
     }()
     
     private lazy var switchThing = {
-        let thing = UISwitch(frame: .zero)
+        let thing = UISwitch()
         thing.translatesAutoresizingMaskIntoConstraints = false
         return thing
     }()
@@ -58,11 +58,13 @@ class ThirdSectionCell: UITableViewCell {
     
 // MARK: Setups
     private func setupViews() {
-       addSubview(cellView)
+        contentView.addSubview(cellView)
         cellView.addSubview(pictureView)
         cellView.addSubview(titleLabel)
         cellView.addSubview(dateLabel)
         cellView.addSubview(switchThing)
+        
+        switchThing.addTarget(self, action: #selector(swichAction), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             cellView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -83,8 +85,14 @@ class ThirdSectionCell: UITableViewCell {
             
             switchThing.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
             switchThing.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -15),
+            switchThing.heightAnchor.constraint(equalToConstant: 44),
+            switchThing.widthAnchor.constraint(equalToConstant: 70),
             
         ])
     }
     
+    @objc
+    func swichAction() {
+        
+    }
 }

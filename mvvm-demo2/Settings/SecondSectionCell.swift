@@ -9,6 +9,11 @@ import UIKit
 
 class SecondSectionCell: UITableViewCell {
     
+    struct ViewModel {
+        let picture: UIImage?
+        let title: String
+    }
+    
 // MARK: Subviews
     
     private lazy var cellView = {
@@ -53,7 +58,7 @@ class SecondSectionCell: UITableViewCell {
     
 // MARK: Setups
     private func setupViews() {
-       addSubview(cellView)
+        contentView.addSubview(cellView)
         cellView.addSubview(pictureView)
         cellView.addSubview(titleLabel)
         cellView.addSubview(rightSidePic)
@@ -77,6 +82,11 @@ class SecondSectionCell: UITableViewCell {
             
             
         ])
+    }
+    
+    func setup(viewModel: ViewModel) {
+        titleLabel.text = viewModel.title
+        pictureView.image = viewModel.picture
     }
     
 }

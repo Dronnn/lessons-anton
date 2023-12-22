@@ -72,6 +72,8 @@ class SettingsViewController: UIViewController {
         ])
     }
     
+    
+    
 }
     
 
@@ -108,8 +110,10 @@ extension SettingsViewController: UITableViewDataSource {
         switch Sections(rawValue: indexPath.section) {
             case .first:
             cell = tableView.dequeueReusableCell(withIdentifier: FirstSectionSettingsCell.identifier, for: indexPath)
+            (cell as? FirstSectionSettingsCell)?.setup(name: "Maria", profession: "Developer", image: UIImage(named: "photo"))
         case .second:
             cell = tableView.dequeueReusableCell(withIdentifier: SecondSectionCell.identifier, for: indexPath)
+            (cell as? SecondSectionCell)?.setup(viewModel: SecondSectionCell.ViewModel(picture: UIImage(systemName: "lock"), title: "Account"))
             cell.backgroundColor = .green
         case .third:
             cell = tableView.dequeueReusableCell(withIdentifier: ThirdSectionCell.identifier, for: indexPath)
