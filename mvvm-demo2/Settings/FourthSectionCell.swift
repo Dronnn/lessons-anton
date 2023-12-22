@@ -9,6 +9,11 @@ import UIKit
 
 class FourthSectionCell: UITableViewCell {
     
+    struct Model: CellModelProtocol {
+        let image: String
+        let title: String
+    }
+    
 // MARK: Subviews
     
     private lazy var cellView = {
@@ -75,6 +80,12 @@ class FourthSectionCell: UITableViewCell {
             rightSidePic.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -15)
             
         ])
+    }
+    
+    func setup(viewModel: CellModelProtocol) {
+        guard let viewModel = viewModel as? Model else { return }
+        pictureView.image = UIImage(systemName: viewModel.image)
+        titleLabel.text = viewModel.title
     }
     
 }

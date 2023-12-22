@@ -9,8 +9,8 @@ import UIKit
 
 class SecondSectionCell: UITableViewCell {
     
-    struct ViewModel {
-        let picture: UIImage?
+    struct Model: CellModelProtocol {
+        let picture: String
         let title: String
     }
     
@@ -84,9 +84,9 @@ class SecondSectionCell: UITableViewCell {
         ])
     }
     
-    func setup(viewModel: ViewModel) {
-        titleLabel.text = viewModel.title
-        pictureView.image = viewModel.picture
+    func setup(model: CellModelProtocol) {
+        titleLabel.text = (model as? Model)?.title
+        pictureView.image = UIImage(systemName: (model as? Model)?.picture ?? "")
     }
     
 }

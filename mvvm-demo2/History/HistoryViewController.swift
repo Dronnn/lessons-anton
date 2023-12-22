@@ -12,7 +12,7 @@ class HistoryViewController: UIViewController {
 // MARK: SubView TableView
     private lazy var tableView = {
         let table = UITableView(frame: .zero)
-        table.backgroundColor = .blue
+        table.backgroundColor = .clear
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -51,8 +51,8 @@ class HistoryViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.register(InfoCell.self, forCellReuseIdentifier: InfoCell.identifier)
-        tableView.register(RecentCell.self, forCellReuseIdentifier: RecentCell.identifier)
+        tableView.register(HistoryCell.self, forCellReuseIdentifier: HistoryCell.identifier)
+        
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45),
@@ -64,12 +64,21 @@ class HistoryViewController: UIViewController {
 }
 
 extension HistoryViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: HistoryCell.identifier, for: indexPath) as? HistoryCell
+        else {
+            return UITableViewCell()
+        }
         return cell
     }
     

@@ -9,6 +9,12 @@ import UIKit
 
 class ThirdSectionCell: UITableViewCell {
     
+    struct Model: CellModelProtocol {
+        let image: String
+        let title: String
+        let date: Date?
+    }
+    
 // MARK: Subviews
     
     private lazy var cellView = {
@@ -93,6 +99,13 @@ class ThirdSectionCell: UITableViewCell {
     
     @objc
     func swichAction() {
-        
+        print("Was switched")
+    }
+    
+    func setup(viewModel: CellModelProtocol) {
+        guard let viewModel = viewModel as? Model else { return }
+        pictureView.image = UIImage(systemName: viewModel.image)
+        titleLabel.text = viewModel.title
+        dateLabel.text = String(describing: viewModel.date)
     }
 }
