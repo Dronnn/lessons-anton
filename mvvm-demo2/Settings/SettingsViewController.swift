@@ -111,19 +111,16 @@ extension SettingsViewController: UITableViewDataSource {
         switch section {
             case .first:
             cell = tableView.dequeueReusableCell(withIdentifier: FirstSectionSettingsCell.identifier, for: indexPath)
-            (cell as? FirstSectionSettingsCell)?.setup(name: "Maria", profession: "Developer", image: UIImage(named: "photo"))
+            (cell as? FirstSectionSettingsCell)?.setup(model: viewModel.getModel(for: .second, with: indexPath.section + indexPath.row))
         case .second:
             cell = tableView.dequeueReusableCell(withIdentifier: SecondSectionCell.identifier, for: indexPath)
             (cell as? SecondSectionCell)?.setup(model: viewModel.getModel(for: .second, with: indexPath.section + indexPath.row))
-            cell.backgroundColor = .green
         case .third:
             cell = tableView.dequeueReusableCell(withIdentifier: ThirdSectionCell.identifier, for: indexPath)
             (cell as? ThirdSectionCell)?.setup(viewModel: viewModel.getModel(for: .third, with: indexPath.section + indexPath.row))
-            cell.backgroundColor = .gray
         case .fourth:
             cell = tableView.dequeueReusableCell(withIdentifier: FourthSectionCell.identifier, for: indexPath)
             (cell as? FourthSectionCell)?.setup(viewModel: viewModel.getModel(for: .fourth, with: indexPath.section + indexPath.row))
-            cell.backgroundColor = .yellow
         case .none:
             cell = UITableViewCell()
         }

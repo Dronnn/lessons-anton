@@ -9,7 +9,11 @@ import UIKit
 
 class FirstSectionSettingsCell: UITableViewCell {
     
-    
+    struct Model: CellModelProtocol {
+        let name: String
+        let profession: String
+        let image: String
+    }
     
 // MARK: Subviews
     private lazy var cellView = {
@@ -89,10 +93,10 @@ class FirstSectionSettingsCell: UITableViewCell {
     }
     
     
-    func setup(name: String, profession: String, image: UIImage?) {
-        nameLabel.text = name
-        professionLabel.text = profession
-        photoImage.image = image
+    func setup(model: CellModelProtocol) {
+        nameLabel.text = (model as? Model)?.name
+        professionLabel.text = (model as? Model)?.profession
+        photoImage.image = UIImage(named: "\(model as? Model)?.image)")
     }
     
 }

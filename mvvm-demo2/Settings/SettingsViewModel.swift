@@ -53,7 +53,7 @@ class SettingsViewModel: SettingsViewModelProtocol {
         case .fourth:
             FourthSectionCell.Model(image: dataModels[index].pictureName, title: dataModels[index].title)
         case .first:
-            fatalError()
+            FirstSectionSettingsCell.Model(name: dataModels[index].title, profession: dataModels[index].subTitle ?? "", image: dataModels[index].pictureName)
         }
         
     }
