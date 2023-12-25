@@ -13,6 +13,8 @@ class ThirdSectionCell: UITableViewCell {
         let image: String
         let title: String
         let date: Date?
+        let isSwitchable: Bool
+        let isSwitchOn: Bool
     }
     
 // MARK: Subviews
@@ -99,7 +101,11 @@ class ThirdSectionCell: UITableViewCell {
     
     @objc
     func swichAction() {
-        print("Was switched")
+        if titleLabel.text == "Application Lock" {
+            SettingsManager.shared.isFaceID = switchThing.isOn
+        } else if titleLabel.text == "Notification"{
+            SettingsManager.shared.isNotification = switchThing.isOn
+        }
     }
     
     func setup(viewModel: CellModelProtocol) {
@@ -107,5 +113,7 @@ class ThirdSectionCell: UITableViewCell {
         pictureView.image = UIImage(systemName: viewModel.image)
         titleLabel.text = viewModel.title
         dateLabel.text = String(describing: viewModel.date)
+        switchThing.isHidden = !viewModel.isSwitchable
+        switchThing.isOn = viewModel.isSwitchOn
     }
 }

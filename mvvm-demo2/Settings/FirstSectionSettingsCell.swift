@@ -94,9 +94,10 @@ class FirstSectionSettingsCell: UITableViewCell {
     
     
     func setup(model: CellModelProtocol) {
-        nameLabel.text = (model as? Model)?.name
-        professionLabel.text = (model as? Model)?.profession
-        photoImage.image = UIImage(named: "\(model as? Model)?.image)")
+        guard let model = model as? Model else { return }
+        nameLabel.text = model.name
+        professionLabel.text = model.profession
+        photoImage.image = UIImage(named: "\(model.image)")
     }
     
 }
