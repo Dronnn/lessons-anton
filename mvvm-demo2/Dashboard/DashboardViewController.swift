@@ -26,9 +26,10 @@ class DashboardViewController: UIViewController {
     // MARK: SubViewButton
     private lazy var circleButton = {
         let button = UIButton(frame: .zero)
-        button.backgroundColor = .green
         button.layer.cornerRadius = 25
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(circleButtonAction), for: .touchUpInside)
         return button
     }()
     
@@ -68,6 +69,12 @@ class DashboardViewController: UIViewController {
         setupTableView()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupGradient()
+    }
+    
+    
     // MARK: Bind
     private func bind() {
         viewModel.callback = {
@@ -78,6 +85,15 @@ class DashboardViewController: UIViewController {
 
     // MARK: Setups
     
+    private func setupGradient() {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = circleButton.bounds
+        gradient.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
+        gradient.locations = [0.0, 1.0]
+        circleButton.layer.insertSublayer(gradient, at: 0)
+        gradient.cornerRadius = 25
+    }
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -86,7 +102,6 @@ class DashboardViewController: UIViewController {
         tableView.register(InfoCell.self, forCellReuseIdentifier: InfoCell.identifier)
         tableView.register(RecentCell.self, forCellReuseIdentifier: RecentCell.identifier)
         
-        circleButton.addTarget(self, action: #selector(circleButtonAction), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

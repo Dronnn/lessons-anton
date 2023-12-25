@@ -9,6 +9,10 @@ import UIKit
 
 class HistoryViewController: UIViewController {
     
+    var numbersArray = [13, 14, 18, 25, 555, 678]
+    
+    var filtredNumbers: [Int] = []
+    
 // MARK: SubView TableView
     private lazy var tableView = {
         let table = UITableView(frame: .zero)
@@ -20,6 +24,7 @@ class HistoryViewController: UIViewController {
 // MARK: Properties
     private var viewModel: HistoryViewModelProtocol
     
+    private let searchController = UISearchController(searchResultsController: nil)
     
 // MARK: Life Cycle
     init(viewModel: HistoryViewModelProtocol) {
@@ -33,9 +38,11 @@ class HistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        filtredNumbers = numbersArray
         view.backgroundColor = UIColor(named: "bgColor")
         title = "History"
         setupTableView()
+        setupSearchController()
     }
     
 // MARK: Bind
@@ -62,6 +69,11 @@ class HistoryViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+    }
 }
 
 extension HistoryViewController: UITableViewDataSource {
@@ -71,7 +83,7 @@ extension HistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        filtredNumbers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,6 +92,7 @@ extension HistoryViewController: UITableViewDataSource {
         else {
             return UITableViewCell()
         }
+        cell.setupModel(transaction: TransactionModel(title: "\(filtredNumbers[indexPath.row])", amount: 1, category: Category(picture: "plus", title: "plus"), date: Date(), note: "ho ho ho"))
         return cell
     }
     
@@ -87,5 +100,17 @@ extension HistoryViewController: UITableViewDataSource {
 }
 
 extension HistoryViewController: UITableViewDelegate {
+    
+}
+
+
+extension HistoryViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filtredNumbers = numbersArray.filter { number in
+            Int(searchController.searchBar.text ?? "") ?? 0 == number
+        }
+        tableView.reloadData()
+    }
     
 }

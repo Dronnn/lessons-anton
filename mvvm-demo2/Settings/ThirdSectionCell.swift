@@ -104,10 +104,17 @@ class ThirdSectionCell: UITableViewCell {
         } else if titleLabel.text == "Notification"{
             SettingsManager.shared.isNotification = switchThing.isOn
         }
+        print(SettingsManager.shared.isFaceID)
+        print(SettingsManager.shared.isNotification)
     }
     
     func setup(viewModel: CellModelProtocol) {
         guard let viewModel = viewModel as? Model else { return }
+        print(viewModel.isSwitchOn)
+        print(SettingsManager.shared.isFaceID)
+        print(SettingsManager.shared.isNotification)
+        print(viewModel.title)
+      
         pictureView.image = UIImage(systemName: viewModel.image)
         titleLabel.text = viewModel.title
         dateLabel.text = String(describing: viewModel.date)
