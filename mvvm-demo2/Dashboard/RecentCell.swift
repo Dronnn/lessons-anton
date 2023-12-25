@@ -8,7 +8,7 @@
 import UIKit
 
 class RecentCell: UITableViewCell {
-    // MARK: SubViews
+// MARK: SubViews
     private lazy var cellView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false

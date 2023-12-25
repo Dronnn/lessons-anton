@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor(named: "bgColor")
         title = "Settings"
         bind()
         setupTableView()

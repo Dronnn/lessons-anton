@@ -18,10 +18,18 @@ class DashboardViewController: UIViewController {
     
     // MARK: SubView TableView
     private lazy var tableView = {
-        let table = UITableView(frame: .zero)
-        table.backgroundColor = .clear
+        let table = UITableView(frame: .zero, style: .insetGrouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
+    }()
+    
+    // MARK: SubViewButton
+    private lazy var circleButton = {
+        let button = UIButton(frame: .zero)
+        button.backgroundColor = .green
+        button.layer.cornerRadius = 25
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     
@@ -54,7 +62,7 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(named: "bgColor")
         title = "Dashboard"
         bind()
         setupTableView()
@@ -74,15 +82,28 @@ class DashboardViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
+        view.addSubview(circleButton)
         tableView.register(InfoCell.self, forCellReuseIdentifier: InfoCell.identifier)
         tableView.register(RecentCell.self, forCellReuseIdentifier: RecentCell.identifier)
+        
+        circleButton.addTarget(self, action: #selector(circleButtonAction), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            circleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            circleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            circleButton.heightAnchor.constraint(equalToConstant: 50),
+            circleButton.widthAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    @objc
+    func circleButtonAction() {
+        print("Button was tapped")
     }
     
 }
@@ -170,6 +191,8 @@ extension DashboardViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.setupModel(transaction: mockData[indexPath.row])
+            
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
             return cell
         }
     }

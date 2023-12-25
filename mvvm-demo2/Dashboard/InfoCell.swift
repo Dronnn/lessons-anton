@@ -48,11 +48,6 @@ class InfoCell: UITableViewCell {
             return label
         }()
     
-//    private lazy var incomeImageView = {
-//            let image = UIImage(systemName: "arrow.down.app.fill")
-//            return image
-//        }()
-    
     private lazy var incomeTextLabel = {
            let label = UILabel(frame: .zero)
            label.text = "Income"
@@ -88,7 +83,6 @@ class InfoCell: UITableViewCell {
     private lazy var pictureUp = {
        let image = UIImageView(image: UIImage(systemName: "arrowshape.up.circle.fill"))
         image.translatesAutoresizingMaskIntoConstraints = false
-//        image.backgroundColor = .green
         image.tintColor = .systemGreen
         image.layer.cornerRadius = 10
         return image
@@ -97,7 +91,6 @@ class InfoCell: UITableViewCell {
     private lazy var pictureDown = {
        let image = UIImageView(image: UIImage(systemName: "arrowshape.down.circle.fill"))
         image.translatesAutoresizingMaskIntoConstraints = false
-//        image.backgroundColor = .red
         image.tintColor = .systemRed
         image.layer.cornerRadius = 10
         return image
@@ -119,7 +112,6 @@ class InfoCell: UITableViewCell {
     
     // MARK: Setups
     private func setupCellView() {
-        backgroundColor = .lightGray
         addSubview(cellView)
         cellView.layer.cornerRadius = 20
         cellView.addSubview(horizontalLineView)

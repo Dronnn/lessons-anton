@@ -88,13 +88,11 @@ class ThirdSectionCell: UITableViewCell {
             titleLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: pictureView.trailingAnchor, constant: 15),
             
-            dateLabel.centerXAnchor.constraint(equalTo: cellView.centerXAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: switchThing.leadingAnchor, constant: -30),
             dateLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
             
             switchThing.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
-            switchThing.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -15),
-            switchThing.heightAnchor.constraint(equalToConstant: 44),
-            switchThing.widthAnchor.constraint(equalToConstant: 70),
+            switchThing.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -20),
             
         ])
     }
