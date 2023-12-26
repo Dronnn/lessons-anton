@@ -108,7 +108,9 @@ extension HistoryViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filtredNumbers = numbersArray.filter { number in
-            Int(searchController.searchBar.text ?? "") ?? 0 == number
+            guard let searchText = searchController.searchBar.text?.lowercased() else { return false }
+            let numberInString = String(number).lowercased()
+            return numberInString.contains(searchText)
         }
         tableView.reloadData()
     }
