@@ -25,7 +25,7 @@ class DetailsViewController: UIViewController {
     
     private lazy var moneyLabel = {
         let label = UILabel(frame: .zero)
-        label.text = "\(String(describing: transactionModel?.amount))"
+        label.text = "\(String(describing: transactionModel?.amount ?? 0))" 
         label.font = .boldSystemFont(ofSize: 30)
         label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -9,12 +9,7 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     
-    var mockData: [TransactionModel] = [
-        TransactionModel(title: "qqq", amount: 123.0, category: Category(picture: "pic", title: "hhh1"), date: Date(), note: "123"),
-        TransactionModel(title: "vwv", amount: 223, category: Category(picture: "hhh", title: "hhh2"), date: Date(), note: "223"),
-        TransactionModel(title: "jjg", amount: 665, category: Category(picture: "nnn", title: "hhh3"), date: Date(), note: "323"),
-        TransactionModel(title: "lll", amount: 456, category: Category(picture: "ggg", title: "hhh5"), date: Date(), note: "423"),
-    ]
+   
     
     // MARK: SubView TableView
     private lazy var tableView = {
@@ -67,6 +62,8 @@ class DashboardViewController: UIViewController {
         title = "Dashboard"
         bind()
         setupTableView()
+        
+        viewModel.getData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -77,8 +74,8 @@ class DashboardViewController: UIViewController {
     
     // MARK: Bind
     private func bind() {
-        viewModel.callback = {
-            
+        viewModel.callback = { [ weak self ] in
+            self?.tableView.reloadData()
         }
     }
 
@@ -118,7 +115,8 @@ class DashboardViewController: UIViewController {
     
     @objc
     func circleButtonAction() {
-        print("Button was tapped")
+        let vc = AddTransactionViewController(viewModel: AddTransactionViewModel())
+        present(vc, animated: true)
     }
     
 }
@@ -141,10 +139,9 @@ extension DashboardViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsVC = DetailsViewController()
-        detailsVC.transactionModel = mockData[indexPath.row]
+        detailsVC.transactionModel = viewModel.mockData[indexPath.row]
         detailsVC.removeClosure = { [weak self ] in
-            self?.mockData.remove(at: indexPath.row)
-            self?.tableView.reloadData()
+            self?.viewModel.removeData(at: indexPath.row)
         }
         navigationController?.pushViewController(detailsVC, animated: true)
     }
@@ -167,7 +164,7 @@ extension DashboardViewController: UITableViewDataSource {
         case .info:
             return 1
         case .recent:
-            return mockData.count
+            return viewModel.mockData.count
         }
     }
     
@@ -205,7 +202,7 @@ extension DashboardViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
-            cell.setupModel(transaction: mockData[indexPath.row])
+            cell.setupModel(transaction: viewModel.mockData[indexPath.row])
             
             cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
             return cell
