@@ -9,6 +9,15 @@ import UIKit
 
 class AddTransactionViewController: UIViewController {
     
+    // MARK: TableView
+    
+    private lazy var tableView = {
+        let table = UITableView(frame: .zero, style: .insetGrouped)
+        table.backgroundColor = .red
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }()
+    
     // MARK: SubViews
     
     private lazy var xButton = {
@@ -71,17 +80,25 @@ class AddTransactionViewController: UIViewController {
         super.viewDidLoad()
         title = "Добавьте транзакцию"
         view.backgroundColor = UIColor(named: "bgColor")
+        setupTableView()
         setupTopLine()
     }
     
 // MARK: Setups
     
+    private func setupTableView() {
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+       
+    }
+    
     private func setupTopLine() {
         view.addSubview(xButton)
         view.addSubview(mainLabel)
         view.addSubview(saveButton)
-        
         view.addSubview(segments)
+        view.addSubview(tableView)
         
         
         NSLayoutConstraint.activate([
@@ -98,6 +115,9 @@ class AddTransactionViewController: UIViewController {
             segments.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             segments.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             segments.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 20),
+            
+//            tableView.topAnchor.constraint(equalTo: segments.bottomAnchor, constant: 20),
+//            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     
@@ -111,4 +131,27 @@ class AddTransactionViewController: UIViewController {
     func saved() {
         print("was saved")
     }
+}
+
+
+extension AddTransactionViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        return cell
+    }
+    
+    
+}
+
+extension AddTransactionViewController: UITableViewDelegate {
+    
 }
