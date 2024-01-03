@@ -9,6 +9,12 @@ import UIKit
 
 class AddTransactionViewController: UIViewController {
     
+    enum Sections: Int, CaseIterable {
+        case first
+        case second
+        case third
+    }
+    
     // MARK: TableView
     
     private lazy var tableView = {
@@ -87,9 +93,13 @@ class AddTransactionViewController: UIViewController {
 // MARK: Setups
     
     private func setupTableView() {
-        view.addSubview(tableView)
+       
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.register(AddTransactionTableViewCell.self, forCellReuseIdentifier: AddTransactionTableViewCell.identifier)
+        tableView.register(DateTableViewCell.self, forCellReuseIdentifier: DateTableViewCell.identifier)
+        
        
     }
     
@@ -116,8 +126,9 @@ class AddTransactionViewController: UIViewController {
             segments.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             segments.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 20),
             
-//            tableView.topAnchor.constraint(equalTo: segments.bottomAnchor, constant: 20),
-//            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tableView.topAnchor.constraint(equalTo: segments.bottomAnchor, constant: 20),
+            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
         ])
     }
     
@@ -136,19 +147,45 @@ class AddTransactionViewController: UIViewController {
 
 extension AddTransactionViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        Sections.allCases.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        guard
+            let sectionName = Sections(rawValue: section)
+        else {
+            fatalError()
+        }
+        
+        switch sectionName {
+        case .first:
+            return 3
+        case .second:
+            return 1
+        case .third:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell
-        else {
+        
+        if indexPath.row == 0 || indexPath.row == 1 {
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
+        } else if indexPath.row == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifier, for: indexPath) as? DateTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
+        } else {
             return UITableViewCell()
         }
-        return cell
     }
-    
+
     
 }
 
