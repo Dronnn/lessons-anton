@@ -172,16 +172,21 @@ extension AddTransactionViewController: UITableViewDataSource {
         
         if indexPath.row == 0 || indexPath.row == 1 {
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell else {
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell
+            else {
                 return UITableViewCell()
             }
             return cell
-        } else if indexPath.row == 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifier, for: indexPath) as? DateTableViewCell else {
+        } 
+        else if indexPath.row == 2 {
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifier, for: indexPath) as? DateTableViewCell else {
                 return UITableViewCell()
             }
             return cell
-        } else {
+        } 
+        else {
             return UITableViewCell()
         }
     }
@@ -191,4 +196,39 @@ extension AddTransactionViewController: UITableViewDataSource {
 
 extension AddTransactionViewController: UITableViewDelegate {
     
+}
+
+
+extension AddTransactionViewController {
+    
+    private func firstSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        return cell
+    }
+    
+    private func secondSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifier, for: indexPath) as? DateTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        return cell
+        
+    }
+    
+    private func thirdSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        return cell
+        
+    }
 }
