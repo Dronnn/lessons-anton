@@ -99,6 +99,7 @@ class AddTransactionViewController: UIViewController {
         
         tableView.register(AddTransactionTableViewCell.self, forCellReuseIdentifier: AddTransactionTableViewCell.identifier)
         tableView.register(DateTableViewCell.self, forCellReuseIdentifier: DateTableViewCell.identifier)
+        tableView.register(AddCategoryTableViewCell.self, forCellReuseIdentifier: AddCategoryTableViewCell.identifier)
         
        
     }
@@ -127,7 +128,9 @@ class AddTransactionViewController: UIViewController {
             segments.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 20),
             
             tableView.topAnchor.constraint(equalTo: segments.bottomAnchor, constant: 20),
-            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
         ])
     }
@@ -170,44 +173,73 @@ extension AddTransactionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 || indexPath.row == 1 {
-            
-            guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell
+        guard
+            let section = Sections(rawValue: indexPath.section)
+        else {
+           return UITableViewCell()
+        }
+        
+        switch section {
+        case .first:
+            if indexPath.row == 0 {
+                
+               return firstSectionCell(tableView, cellForRowAt: indexPath, name: "Сумма")
+                
+            } else if indexPath.row == 1 {
+                
+                return firstSectionCell(tableView, cellForRowAt: indexPath, name: "Название")
+                 
+             }
+            else if indexPath.row == 2 {
+               return secondSectionCell(tableView, cellForRowAt: indexPath)
+            }
             else {
                 return UITableViewCell()
             }
-            return cell
-        } 
-        else if indexPath.row == 2 {
-            guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifier, for: indexPath) as? DateTableViewCell else {
-                return UITableViewCell()
-            }
-            return cell
-        } 
+        case .second:
+            return thirdSectionCell(tableView, cellForRowAt: indexPath)
+        case .third:
+            return firstSectionCell(tableView, cellForRowAt: indexPath, name: "Заметка")
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard
+            let section = Sections(rawValue: section)
         else {
-            return UITableViewCell()
+           return " "
+        }
+        
+        switch section {
+        case .first:
+           return "Информация"
+        case .second:
+            return ""
+        case .third:
+            return "Заметка"
         }
     }
-
     
 }
 
 extension AddTransactionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
     
 }
 
 
 extension AddTransactionViewController {
     
-    private func firstSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    private func firstSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, name: String) -> UITableViewCell {
+        
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell
         else {
             return UITableViewCell()
         }
-        
+        cell.setup(name: name)
         cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         return cell
     }
@@ -224,7 +256,7 @@ extension AddTransactionViewController {
     
     private func thirdSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: AddTransactionTableViewCell.identifier, for: indexPath) as? AddTransactionTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: AddCategoryTableViewCell.identifier, for: indexPath) as? AddCategoryTableViewCell
         else {
             return UITableViewCell()
         }

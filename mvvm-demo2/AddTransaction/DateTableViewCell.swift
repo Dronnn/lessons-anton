@@ -25,13 +25,6 @@ class DateTableViewCell: UITableViewCell {
         piker.translatesAutoresizingMaskIntoConstraints = false
         return piker
     }()
-    
-    private lazy var timePik = {
-        let piker = UIDatePicker(frame: .zero)
-        piker.datePickerMode = .time
-        piker.translatesAutoresizingMaskIntoConstraints = false
-        return piker
-    }()
 
 // MARK: Life Cycle
             
@@ -51,7 +44,6 @@ class DateTableViewCell: UITableViewCell {
         private func setupSubViews() {
             addSubview(nameLabel)
             addSubview(datePik)
-            addSubview(timePik)
             
             NSLayoutConstraint.activate([
                 nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -60,8 +52,6 @@ class DateTableViewCell: UITableViewCell {
                 datePik.centerYAnchor.constraint(equalTo: self.centerYAnchor),
                 datePik.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 
-                timePik.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                timePik.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             ])
         }
 

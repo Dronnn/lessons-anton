@@ -18,12 +18,7 @@ class AddTransactionTableViewCell: UITableViewCell {
         return textField
     }()
     
-    private lazy var nameText = {
-        let textField = UITextField(frame: .zero)
-        textField.placeholder = "Название"
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
+   
     
     
 
@@ -43,7 +38,20 @@ class AddTransactionTableViewCell: UITableViewCell {
     // MARK: Setups
     
     private func setupSubViews() {
+        contentView.addSubview(summText)
         
+        NSLayoutConstraint.activate([
+            summText.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            summText.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            summText.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            summText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            summText.heightAnchor.constraint(equalToConstant: 44),
+        ])
+        
+    }
+    
+    func setup(name: String) {
+        summText.placeholder = name
     }
 
 }
