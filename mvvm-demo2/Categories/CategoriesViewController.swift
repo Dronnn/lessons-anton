@@ -9,11 +9,85 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
     
+    enum Sections: Int, CaseIterable {
+        case first
+        case second
+        case third
+        case fourth
+        case fifth
+        case sixth
+        case seventh
+        case eighth
+        case ninth
+    }
+    
     let categorySectionsData: [String:[String]] = [
-        "Auto & Transport":["Public Transportation", "Taxi"], "Bills & Utilites":["Mobile Phone"], "Entertainment":["Movies & DVDs"], "Fees & Charges":["Bank Fee", "Finance Charge"], "Food & Dining":["Groceries", "Restaurants"], "Home":["Rent", "Home Supplies"], "Income":["Paycheque"], "Shopping":["Software"], "Transfer":["Credit Card Payment"]
+        "Auto & Transport":[
+            "Public Transportation",
+            "Taxi"
+        ],
+        "Bills & Utilites":[
+            "Mobile Phone"
+        ],
+        "Entertainment":[
+            "Movies & DVDs"
+        ],
+        "Fees & Charges":[
+            "Bank Fee",
+            "Finance Charge"
+        ], 
+        "Food & Dining":[
+            "Groceries",
+            "Restaurants"
+        ], 
+        "Home":[
+            "Rent",
+            "Home Supplies"
+        ], 
+        "Income":[
+            "Paycheque"
+        ],
+        "Shopping":[
+            "Software"
+        ],
+        "Transfer":[
+            "Credit Card Payment"
+        ],
     ]
     
-    let categoriesPictures: [String:[String]] = ["car":["bus.fill", "car.front.waves.up"] ]
+    let categoriesPictures: [String:[String]] = [
+        "car":[
+            "bus.fill",
+            "car.front.waves.up"
+        ],
+        "list.clipboard":[
+            "iphone.gen1"
+        ],
+        "film":[
+            "film"
+        ],
+        "creditcard.and.123":[
+            "creditcard",
+            "creditcard"
+        ],
+        "cart":[
+            "basket",
+            "fork.knife"
+        ],
+        "house":[
+            "house.lodge",
+            "lightbulb.led"
+        ],
+        "dollarsign":[
+            "dollarsign"
+        ],
+        "giftcard":[
+            "gamecontroller"
+        ],
+        "arrow.left.arrow.right":[
+            "arrow.left.arrow.right"
+        ],
+    ]
     
     // MARK: SubView TableView
     private lazy var tableView = {
@@ -40,7 +114,7 @@ class CategoriesViewController: UIViewController {
         tableView.register(CategoriesViewCell.self, forCellReuseIdentifier: CategoriesViewCell.identifier)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -58,13 +132,34 @@ extension CategoriesViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        categorySectionsData.keys.count
+        Sections.allCases.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let sortedKeys = categorySectionsData.keys.sorted()
-//        let sectionKey = sortedKeys[section]
-//        return categorySectionsData[sectionKey]?.count ?? 0
-        1
+        guard
+            let sectionName = Sections(rawValue: section)
+        else {
+            fatalError()
+        }
+        switch sectionName {
+        case .first:
+            return 2
+        case .second:
+            return 1
+        case .third:
+            return 1
+        case .fourth:
+            return 2
+        case .fifth:
+            return 2
+        case .sixth:
+            return 2
+        case .seventh:
+            return 1
+        case .eighth:
+            return 1
+        case .ninth:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,15 +181,13 @@ extension CategoriesViewController {
     else {
         return UITableViewCell()
     }
-        let sectionKey = Array(categorySectionsData.keys)[indexPath.section]
-//        let categoryArray = categorySectionsData[sectionKey]
-//        let category = categoryArray?[indexPath.row] ?? ""
-                
-    cell.setupPicturesAndLabels(title: sectionKey, pitureName: "car")
-                
-    cell.separatorInset = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 0)
-//    cell.setupPicturesAndLabels(title: titleLabel, pitureName: pictureName)
-    cell.separatorInset = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 0)
-    return cell
-}
+        cell.separatorInset = UIEdgeInsets(
+            top: 0,
+            left: 70,
+            bottom: 0,
+            right: 0
+        )
+               
+        return cell
+    }
 }
