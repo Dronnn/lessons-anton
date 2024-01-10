@@ -21,73 +21,73 @@ class CategoriesViewController: UIViewController {
         case ninth
     }
     
-    let categorySectionsData: [String:[String]] = [
-        "Auto & Transport":[
-            "Public Transportation",
-            "Taxi"
-        ],
-        "Bills & Utilites":[
-            "Mobile Phone"
-        ],
-        "Entertainment":[
-            "Movies & DVDs"
-        ],
-        "Fees & Charges":[
-            "Bank Fee",
-            "Finance Charge"
-        ], 
-        "Food & Dining":[
-            "Groceries",
-            "Restaurants"
-        ], 
-        "Home":[
-            "Rent",
-            "Home Supplies"
-        ], 
-        "Income":[
-            "Paycheque"
-        ],
-        "Shopping":[
-            "Software"
-        ],
-        "Transfer":[
-            "Credit Card Payment"
-        ],
-    ]
+//    let categorySectionsData: [String:[String]] = [
+//        "Auto & Transport":[
+//            "Public Transportation",
+//            "Taxi"
+//        ],
+//        "Bills & Utilites":[
+//            "Mobile Phone"
+//        ],
+//        "Entertainment":[
+//            "Movies & DVDs"
+//        ],
+//        "Fees & Charges":[
+//            "Bank Fee",
+//            "Finance Charge"
+//        ], 
+//        "Food & Dining":[
+//            "Groceries",
+//            "Restaurants"
+//        ], 
+//        "Home":[
+//            "Rent",
+//            "Home Supplies"
+//        ], 
+//        "Income":[
+//            "Paycheque"
+//        ],
+//        "Shopping":[
+//            "Software"
+//        ],
+//        "Transfer":[
+//            "Credit Card Payment"
+//        ],
+//    ]
     
-    let categoriesPictures: [String:[String]] = [
-        "car":[
-            "bus.fill",
-            "car.front.waves.up"
-        ],
-        "list.clipboard":[
-            "iphone.gen1"
-        ],
-        "film":[
-            "film"
-        ],
-        "creditcard.and.123":[
-            "creditcard",
-            "creditcard"
-        ],
-        "cart":[
-            "basket",
-            "fork.knife"
-        ],
-        "house":[
-            "house.lodge",
-            "lightbulb.led"
-        ],
-        "dollarsign":[
-            "dollarsign"
-        ],
-        "giftcard":[
-            "gamecontroller"
-        ],
-        "arrow.left.arrow.right":[
-            "arrow.left.arrow.right"
-        ],
-    ]
+//    let categoriesPictures: [String:[String]] = [
+//        "car":[
+//            "bus.fill",
+//            "car.front.waves.up"
+//        ],
+//        "list.clipboard":[
+//            "iphone.gen1"
+//        ],
+//        "film":[
+//            "film"
+//        ],
+//        "creditcard.and.123":[
+//            "creditcard",
+//            "creditcard"
+//        ],
+//        "cart":[
+//            "basket",
+//            "fork.knife"
+//        ],
+//        "house":[
+//            "house.lodge",
+//            "lightbulb.led"
+//        ],
+//        "dollarsign":[
+//            "dollarsign"
+//        ],
+//        "giftcard":[
+//            "gamecontroller"
+//        ],
+//        "arrow.left.arrow.right":[
+//            "arrow.left.arrow.right"
+//        ],
+//    ]
     
     // MARK: SubView TableView
     private lazy var tableView = {
@@ -134,6 +134,7 @@ extension CategoriesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         Sections.allCases.count
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard
             let sectionName = Sections(rawValue: section)

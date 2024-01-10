@@ -9,6 +9,8 @@ import UIKit
 
 class AddTransactionTableViewCell: UITableViewCell {
     
+    
+    
     // MARK: Subviews
     
     private lazy var summText = {
