@@ -60,7 +60,7 @@ class CategoriesViewCell: UITableViewCell {
     
     
     func setupPicture(name: String) {
-        picture.image = UIImage(named: name)
+        picture.image = UIImage(systemName: name)
     }
     
     func setupLabel(title: String) {

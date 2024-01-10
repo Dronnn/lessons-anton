@@ -9,85 +9,112 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
     
+    var categoryClouser: ((Category) -> Void)?
+    
     enum Sections: Int, CaseIterable {
         case first
         case second
-        case third
-        case fourth
-        case fifth
-        case sixth
-        case seventh
-        case eighth
-        case ninth
+//        case third
+//        case fourth
+//        case fifth
+//        case sixth
+//        case seventh
+//        case eighth
+//        case ninth
+        
+        var title: String {
+            switch self {
+            case .first:
+                "Auto & Transport"
+            case .second:
+                "Bills & Utilites"
+            }
+        }
+        
+        var picture: String {
+            switch self {
+            case .first:
+                "car"
+            case .second:
+                "list.clipboard"
+            }
+        }
     }
     
-//    let categorySectionsData: [String:[String]] = [
-//        "Auto & Transport":[
-//            "Public Transportation",
-//            "Taxi"
-//        ],
-//        "Bills & Utilites":[
-//            "Mobile Phone"
-//        ],
-//        "Entertainment":[
-//            "Movies & DVDs"
-//        ],
-//        "Fees & Charges":[
-//            "Bank Fee",
-//            "Finance Charge"
-//        ], 
-//        "Food & Dining":[
-//            "Groceries",
-//            "Restaurants"
-//        ], 
-//        "Home":[
-//            "Rent",
-//            "Home Supplies"
-//        ], 
-//        "Income":[
-//            "Paycheque"
-//        ],
-//        "Shopping":[
-//            "Software"
-//        ],
-//        "Transfer":[
-//            "Credit Card Payment"
-//        ],
-//    ]
     
-//    let categoriesPictures: [String:[String]] = [
-//        "car":[
-//            "bus.fill",
-//            "car.front.waves.up"
-//        ],
-//        "list.clipboard":[
-//            "iphone.gen1"
-//        ],
-//        "film":[
-//            "film"
-//        ],
-//        "creditcard.and.123":[
-//            "creditcard",
-//            "creditcard"
-//        ],
-//        "cart":[
-//            "basket",
-//            "fork.knife"
-//        ],
-//        "house":[
-//            "house.lodge",
-//            "lightbulb.led"
-//        ],
-//        "dollarsign":[
-//            "dollarsign"
-//        ],
-//        "giftcard":[
-//            "gamecontroller"
-//        ],
-//        "arrow.left.arrow.right":[
-//            "arrow.left.arrow.right"
-//        ],
-//    ]
+    let categories: [Category] = [
+    Category(picture: "bus.fill", title: "Public Transportation"),
+    Category(picture: "car.front.waves.up", title: "Taxi"),
+    Category(picture: "iphone.gen1", title: "Mobile Phone"),
+    ]
+    
+    let categorySectionsData: [String:[String]] = [
+        "Auto & Transport":[
+            "Public Transportation",
+            "Taxi"
+        ],
+        "Bills & Utilites":[
+            "Mobile Phone"
+        ],
+        "Entertainment":[
+            "Movies & DVDs"
+        ],
+        "Fees & Charges":[
+            "Bank Fee",
+            "Finance Charge"
+        ], 
+        "Food & Dining":[
+            "Groceries",
+            "Restaurants"
+        ], 
+        "Home":[
+            "Rent",
+            "Home Supplies"
+        ], 
+        "Income":[
+            "Paycheque"
+        ],
+        "Shopping":[
+            "Software"
+        ],
+        "Transfer":[
+            "Credit Card Payment"
+        ],
+    ]
+    
+    let categoriesPictures: [String:[String]] = [
+        "car":[
+            "bus.fill",
+            "car.front.waves.up"
+        ],
+        "list.clipboard":[
+            "iphone.gen1"
+        ],
+        "film":[
+            "film"
+        ],
+        "creditcard.and.123":[
+            "creditcard",
+            "creditcard"
+        ],
+        "cart":[
+            "basket",
+            "fork.knife"
+        ],
+        "house":[
+            "house.lodge",
+            "lightbulb.led"
+        ],
+        "dollarsign":[
+            "dollarsign"
+        ],
+        "giftcard":[
+            "gamecontroller"
+        ],
+        "arrow.left.arrow.right":[
+            "arrow.left.arrow.right"
+        ],
+    ]
     
     // MARK: SubView TableView
     private lazy var tableView = {
@@ -146,20 +173,20 @@ extension CategoriesViewController: UITableViewDataSource {
             return 2
         case .second:
             return 1
-        case .third:
-            return 1
-        case .fourth:
-            return 2
-        case .fifth:
-            return 2
-        case .sixth:
-            return 2
-        case .seventh:
-            return 1
-        case .eighth:
-            return 1
-        case .ninth:
-            return 1
+//        case .third:
+//            return 1
+//        case .fourth:
+//            return 2
+//        case .fifth:
+//            return 2
+//        case .sixth:
+//            return 2
+//        case .seventh:
+//            return 1
+//        case .eighth:
+//            return 1
+//        case .ninth:
+//            return 1
         }
     }
     
@@ -167,10 +194,24 @@ extension CategoriesViewController: UITableViewDataSource {
         
         return simpleCell(tableView, cellForRowAt: indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard
+            let section = Sections(rawValue: section)
+        else {
+            fatalError()
+        }
+        return section.title
+    }
 }
 
 extension CategoriesViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        categoryClouser?(categories[indexPath.section + indexPath.row])
+        
+        
+    }
    
 }
 
@@ -188,6 +229,8 @@ extension CategoriesViewController {
             bottom: 0,
             right: 0
         )
+        cell.setupLabel(title: categories[indexPath.section + indexPath.row].title)
+        cell.setupPicture(name: categories[indexPath.section + indexPath.row].picture)
                
         return cell
     }
