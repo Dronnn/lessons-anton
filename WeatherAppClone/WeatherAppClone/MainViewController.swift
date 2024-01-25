@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     private enum Constants {
         static let firstRowInFirstSectionHeight: CGFloat = 56
         static let secondRowInFirstSectionHeight: CGFloat = 132
+        static let heightForWeekSection: CGFloat = 44
     }
     
 // MARK: Subviews
@@ -150,17 +151,34 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0, indexPath.row == 0 {
-            return Constants.firstRowInFirstSectionHeight
-        } else if indexPath.section == 0, indexPath.row == 1 {
-            return Constants.secondRowInFirstSectionHeight
+//        if indexPath.section == 0, indexPath.row == 0 {
+//            return Constants.firstRowInFirstSectionHeight
+//        } else if indexPath.section == 0, indexPath.row == 1 {
+//            return Constants.secondRowInFirstSectionHeight
+//        } else {
+//            return 44
+//        }
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                return Constants.firstRowInFirstSectionHeight
+            } else {
+                return Constants.secondRowInFirstSectionHeight
+            }
         } else {
-            return 44
+            return Constants.heightForWeekSection
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            2
+        } else {
+            7
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -20,7 +20,9 @@ class WeekDescriptionTableViewCell: UITableViewCell {
     private lazy var currentDayLabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Today"
+        label.text = "Sunday"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Arial", size: 16)
         return label
     }()
     
@@ -34,6 +36,8 @@ class WeekDescriptionTableViewCell: UITableViewCell {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "22"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Arial", size: 16)
         return label
     }()
     
@@ -48,6 +52,8 @@ class WeekDescriptionTableViewCell: UITableViewCell {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "33"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Arial", size: 16)
         return label
     }()
     
@@ -56,10 +62,12 @@ class WeekDescriptionTableViewCell: UITableViewCell {
 // MARK: Life Cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
     }
         
     required init?(coder: NSCoder) {
         super .init(coder: coder)
+        setupViews()
     }
         
 // MARK: Setups
@@ -78,17 +86,21 @@ class WeekDescriptionTableViewCell: UITableViewCell {
             blurView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             currentDayLabel.centerYAnchor.constraint(equalTo: blurView.centerYAnchor),
-            currentDayLabel.leadingAnchor.constraint(equalTo: blurView.leadingAnchor, constant: 8),
+            currentDayLabel.leadingAnchor.constraint(equalTo: blurView.leadingAnchor, constant: 16),
+
             
             weatherImage.centerYAnchor.constraint(equalTo: blurView.centerYAnchor),
-            weatherImage.leadingAnchor.constraint(equalTo: currentDayLabel.trailingAnchor, constant: 16),
+            weatherImage.leadingAnchor.constraint(equalTo: currentDayLabel.trailingAnchor, constant: 24),
+            weatherImage.heightAnchor.constraint(equalToConstant: 16),
+            weatherImage.widthAnchor.constraint(equalToConstant: 16),
             
             nightTempLabel.centerYAnchor.constraint(equalTo: blurView.centerYAnchor),
-            nightTempLabel.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 16),
+            nightTempLabel.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 24),
+
             
             dayTempLabel.centerYAnchor.constraint(equalTo: blurView.centerYAnchor),
-            dayTempLabel.trailingAnchor.constraint(equalTo: blurView.trailingAnchor, constant: -8)
-            
+            dayTempLabel.trailingAnchor.constraint(equalTo: blurView.trailingAnchor, constant: -24),
+
             
         ])
     }
