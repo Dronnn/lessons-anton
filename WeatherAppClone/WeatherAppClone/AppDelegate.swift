@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  WeatherClone
+//  WeatherAppClone
 //
 //  Created by Eliseev Anton on 25.01.2024.
 //
