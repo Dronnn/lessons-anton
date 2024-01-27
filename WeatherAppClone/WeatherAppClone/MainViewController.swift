@@ -24,6 +24,12 @@ class MainViewController: UIViewController {
     
 // MARK: Subviews
     
+    private lazy var collectionCellsPerHour = {
+        let collection = UICollectionView(frame: .zero)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        return collection
+    }()
+    
     private lazy var tableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -106,6 +112,7 @@ override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(DayDescriptionTableViewCell.self, forCellReuseIdentifier: DayDescriptionTableViewCell.identifier)
+        tableView.register(WeatherPerHourUITableViewCell.self, forCellReuseIdentifier: WeatherPerHourUITableViewCell.identifier)
         tableView.register(WeekDescriptionTableViewCell.self, forCellReuseIdentifier: WeekDescriptionTableViewCell.identifier)
         
     let hLabelAndlLabelStackView = UIStackView(arrangedSubviews: [hLabel, lLabel])
@@ -151,13 +158,6 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 0, indexPath.row == 0 {
-//            return Constants.firstRowInFirstSectionHeight
-//        } else if indexPath.section == 0, indexPath.row == 1 {
-//            return Constants.secondRowInFirstSectionHeight
-//        } else {
-//            return 44
-//        }
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 return Constants.firstRowInFirstSectionHeight
@@ -166,6 +166,14 @@ extension MainViewController: UITableViewDataSource {
             }
         } else {
             return Constants.heightForWeekSection
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Hourly Forecast"
+        } else {
+            return "10-day ForceCast"
         }
     }
     
@@ -184,9 +192,9 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            return firstSectionCell(tableView, cellForRowAt: indexPath)
+            return firstRowFirstSectionCell(tableView, cellForRowAt: indexPath)
         } else if indexPath.section == 1 {
-            return secondSectionCell(tableView, cellForRowAt: indexPath)
+            return secondRowFirstSectionCell(tableView, cellForRowAt: indexPath)
         } else {
             return UITableViewCell()
         }
@@ -196,7 +204,8 @@ extension MainViewController: UITableViewDataSource {
 }
 
 extension MainViewController {
-    func firstSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func firstRowFirstSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: DayDescriptionTableViewCell.identifier, for: indexPath) as?        DayDescriptionTableViewCell
         else {
@@ -205,6 +214,17 @@ extension MainViewController {
         cell.separatorInset = UIEdgeInsets(top: 0, left: 36, bottom: 0, right: 36)
         return cell
     }
+    
+    func secondRowFirstSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: WeatherPerHourUITableViewCell.identifier, for: indexPath) as?        WeatherPerHourUITableViewCell
+        else {
+            return UITableViewCell()
+        }
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 36, bottom: 0, right: 36)
+        return cell
+    }
+    
     
     func secondSectionCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
@@ -215,4 +235,17 @@ extension MainViewController {
         cell.separatorInset = UIEdgeInsets(top: 0, left: 36, bottom: 0, right: 36)
         return cell
     }
+    
+    private func setupCollectionView() {
+       
+    }
 }
+
+extension MainViewController: UICollectionViewDelegate {
+    
+}
+
+
+    
+    
+

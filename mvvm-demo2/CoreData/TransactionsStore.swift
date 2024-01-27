@@ -71,7 +71,6 @@ class TransactionsStore: NSObject, TransactionsStoreProtocol {
     
     func getDataLastDay() -> [TransactionModel] {
         try? rezultController1.performFetch()
-        
         let rezultObjects = rezultController1.fetchedObjects?
             .filter {
                 $0.date?.removeTime == Date().removeTime
@@ -95,8 +94,6 @@ class TransactionsStore: NSObject, TransactionsStoreProtocol {
         try? rezultController2.performFetch()
         
         let rezultObjects = rezultController2.fetchedObjects?
-        
-            
             .compactMap {
             TransactionModel(
                 title: $0.name ?? "",

@@ -18,6 +18,14 @@ class DayDescriptionTableViewCell: UITableViewCell {
         return view
     }()
     
+    private lazy var weatherDescriptionTextLabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Weather description"
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
 
 // MARK: Life Cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,12 +42,21 @@ class DayDescriptionTableViewCell: UITableViewCell {
     
     private func setupViews() {
         contentView.addSubview(blurView)
+        blurView.addSubview(weatherDescriptionTextLabel)
         
         NSLayoutConstraint.activate([
             blurView.topAnchor.constraint(equalTo: contentView.topAnchor),
             blurView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             blurView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             blurView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            weatherDescriptionTextLabel.topAnchor.constraint(equalTo: blurView.topAnchor),
+            weatherDescriptionTextLabel.bottomAnchor.constraint(equalTo: blurView.bottomAnchor),
+            weatherDescriptionTextLabel.leadingAnchor.constraint(equalTo: blurView.leadingAnchor),
+            weatherDescriptionTextLabel.trailingAnchor.constraint(equalTo: blurView.trailingAnchor),
+            
         ])
     }
 }
+
+
