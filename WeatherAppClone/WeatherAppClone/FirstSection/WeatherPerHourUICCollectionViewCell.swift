@@ -9,9 +9,12 @@ import UIKit
 
 class WeatherPerHourUITableViewCell: UITableViewCell {
     
+    
 // MARK: Subviews
     private lazy var hourlyWeatherCollectionView = {
-        let collection = UICollectionView(frame: .zero)
+        let layout = UICollectionViewFlowLayout()
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        layout.scrollDirection = .horizontal
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .green
         return collection
@@ -50,12 +53,13 @@ class WeatherPerHourUITableViewCell: UITableViewCell {
 extension WeatherPerHourUITableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourCollectionViewCell.identifier, for: indexPath) as? HourCollectionViewCell
-//        else {
-//            return UICollectionViewCell()
-//        }
-        let cell = UICollectionViewCell()
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourCollectionViewCell.identifier, for: indexPath) as? HourCollectionViewCell
+        else {
+            return UICollectionViewCell()
+        }
+        
+        
         cell.backgroundColor = .green
         return cell
     }
