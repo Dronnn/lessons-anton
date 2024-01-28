@@ -191,12 +191,21 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+//        if indexPath.section == 0 {
+//            return firstRowFirstSectionCell(tableView, cellForRowAt: indexPath)
+//        } else if indexPath.section == 1 {
+//            return secondSectionCell(tableView, cellForRowAt: indexPath)
+//        } else {
+//            return UITableViewCell()
+//        }
         if indexPath.section == 0 {
-            return firstRowFirstSectionCell(tableView, cellForRowAt: indexPath)
-        } else if indexPath.section == 1 {
-            return secondRowFirstSectionCell(tableView, cellForRowAt: indexPath)
+            if indexPath.row == 0 {
+                return firstRowFirstSectionCell(tableView, cellForRowAt: indexPath)
+            } else {
+                return secondRowFirstSectionCell(tableView, cellForRowAt: indexPath)
+            }
         } else {
-            return UITableViewCell()
+            return secondSectionCell(tableView, cellForRowAt: indexPath)
         }
     }
     

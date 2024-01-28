@@ -23,8 +23,8 @@ class WeatherClient {
 //            complition(.failure(error))
             return
         }
-        networkService.makeRequest(url: url) { result in
-            <#code#>
-        }
+//        networkService.makeRequest(url: url) { result in
+//            <#code#>
+//        }
     }
 }
