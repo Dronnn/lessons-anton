@@ -91,13 +91,17 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    
+
+    let viewModel: MainViewModelProtocol = MainViewModel() // Переделать
     
 // MARK: Life Cycle
-override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBlue
         setupSubviews()
+        viewModel.getData() { weatherData in
+            print(weatherData)
+        }
     }
 
 // MARK: Setups

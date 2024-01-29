@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherData {
+struct WeatherData: Decodable {
     
     
 }

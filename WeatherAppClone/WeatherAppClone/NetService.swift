@@ -8,9 +8,6 @@
 import Foundation
 
 class NetService {
-    
-   
-    
     func makeRequest(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
         let request: URLRequest = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, responce, error in
