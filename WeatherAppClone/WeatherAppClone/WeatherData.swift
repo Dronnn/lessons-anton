@@ -22,6 +22,39 @@ struct WeatherData: Decodable {
     let id: Int
     let name: String
     let cod: Int
+    
+    static let empty: WeatherData = WeatherData(
+        coord: Coordinats(
+            lon: 0.0,
+            lat: 0.0
+        ),
+        weather: [],
+        base: "",
+        main: Main(
+            temp: 0.0,
+            feelsLike: 0.0,
+            tempMin: 0.0,
+            tempMax: 0.0,
+            pressure: 0,
+            humidity: 0,
+            seaLevel: 0,
+            grndLevel: 0
+        ),
+        visibility: 0,
+        wind: Wind(
+            speed: 0.0,
+            deg: 0,
+            gust: 0.0
+        ),
+        clouds: Clouds(
+            all: 0
+        ),
+        dt: 0,
+        timezone: 0,
+        id: 0,
+        name: "",
+        cod: 0
+    )
 }
 
 struct Coordinats: Codable {

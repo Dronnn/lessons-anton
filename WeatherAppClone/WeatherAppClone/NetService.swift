@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 class NetService {
     func makeRequest(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
         let request: URLRequest = URLRequest(url: url)
@@ -22,5 +24,21 @@ class NetService {
             }
         }.resume()
     }
-    
 }
+
+//class NetService2 {
+//    func makeRequest(url: URL) async throws -> Data {
+//        let request: URLRequest = URLRequest(url: url)
+//        let (data, response) = try await URLSession.shared.data(for: request)
+//
+//        guard let httpResponse = response as? HTTPURLResponse else {
+//            throw URLError(.badServerResponse)
+//        }
+//
+//        guard httpResponse.statusCode == 200 else {
+//            throw URLError(.init(rawValue: httpResponse.statusCode))
+//        }
+//
+//        return data
+//    }
+//}

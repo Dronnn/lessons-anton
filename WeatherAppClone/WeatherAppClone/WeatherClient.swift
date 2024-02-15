@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 class WeatherClient {
     
     private let urlString: String = "https://api.openweathermap.org/data/2.5/weather?"
@@ -28,6 +30,7 @@ class WeatherClient {
             case .success(let data):
                 do {
                    let weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
+                    //  String(data: data, encoding: .utf8)
                     complition(.success(weatherData))
                 } catch {
                     complition(.failure(error))          
@@ -39,3 +42,5 @@ class WeatherClient {
         }
     }
 }
+
+

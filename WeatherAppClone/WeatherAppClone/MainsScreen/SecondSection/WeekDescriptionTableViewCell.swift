@@ -105,4 +105,9 @@ class WeekDescriptionTableViewCell: UITableViewCell {
         ])
     }
 
+    
+    func setupLabels(minTemp: Double, maxTemp: Double, image: String) {
+        weatherImage.image = UIImage(systemName: image)
+        
+    }
 }

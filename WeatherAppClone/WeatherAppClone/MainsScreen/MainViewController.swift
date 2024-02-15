@@ -5,6 +5,10 @@
 //  Created by Eliseev Anton on 25.01.2024.
 //
 
+
+
+//- some : "{\"coord\":{\"lon\":37.6156,\"lat\":55.7522},\"weather\":[{\"id\":804,\"main\":\"Clouds\",\"description\":\"overcast clouds\",\"icon\":\"04n\"}],\"base\":\"stations\",\"main\":{\"temp\":1.09,\"feels_like\":-3.47,\"temp_min\":0.34,\"temp_max\":1.75,\"pressure\":1002,\"humidity\":91,\"sea_level\":1002,\"grnd_level\":983},\"visibility\":10000,\"wind\":{\"speed\":4.85,\"deg\":243,\"gust\":11.27},\"clouds\":{\"all\":100},\"dt\":1706805497,\"sys\":{\"type\":2,\"id\":2000314,\"country\":\"RU\",\"sunrise\":1706765092,\"sunset\":1706796063},\"timezone\":10800,\"id\":524901,\"name\":\"Moscow\",\"cod\":200}"
+
 import UIKit
 
 class MainViewController: UIViewController {
@@ -99,8 +103,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBlue
         setupSubviews()
-        viewModel.getData() { weatherData in
-            print(weatherData)
+        viewModel.getData() { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
 
@@ -147,7 +153,7 @@ class MainViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: hLabelAndlLabelStackView.bottomAnchor, constant: 64),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tableView.heightAnchor.constraint(equalToConstant: 1500),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
         ])
     }
